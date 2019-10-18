@@ -1,10 +1,31 @@
 <template>
   <div class="about">
     <h1>列表页</h1>
-      <el-table :data="items">
+      <el-table :data="items.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))">
         <el-table-column prop="date" label="ID" width="240"></el-table-column>
         <el-table-column prop="title" label="文章标题"></el-table-column>
-         <el-table-column
+            <el-table-column
+      align="right">
+      <template slot="header" slot-scope="scope">
+        <el-input
+          v-model="search"
+          size="mini"
+          placeholder="输入关键字搜索"/>
+      </template>
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          @click="$router.push(`/articles/edit/${scope.row._id}`)">Edit</el-button>
+        <el-button
+          size="mini"
+          type="danger"
+          @click="remove(scope.row)">Delete</el-button>
+      </template>
+    </el-table-column>
+ 
+
+
+         <!-- <el-table-column
       fixed="right"
       label="操作"
       width="180">
@@ -12,7 +33,7 @@
         <el-button type="primary" size="small" @click="$router.push(`/articles/edit/${scope.row._id}`)">编辑</el-button>
         <el-button type="primary" size="small" @click="remove(scope.row)">删除</el-button>
       </template>
-    </el-table-column>
+    </el-table-column> -->
       </el-table>
   </div>
 </template>
@@ -20,7 +41,8 @@
 export default {
   data() {
     return {
-      items:[]
+      items:[],
+      search:""
     }
   },
   methods: {
