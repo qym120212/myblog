@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>{{id ? "编辑" : "新建"}}文章</h1>
+    <h1>{{id ? "编辑" : "新建"}}随笔</h1>
     <el-form label-width="120px" @submit.native.prevent="save()">
         <el-form-item label="标题">
             <el-input v-model="model.title"></el-input>
@@ -29,27 +29,27 @@ export default {
     data(){
         return{
             model:{},
+            categories:[]
         }
     },
     methods:{
         async save(){
             let res;
             if(this.id){
-                 res = await this.$http.put(`articles/${this.id}`,this.model) 
+                 res = await this.$http.put(`talkothers/${this.id}`,this.model) 
             }else{
-                 res = await this.$http.post('articles',this.model)
+                 res = await this.$http.post('talkothers',this.model)
             }    
-            this.$router.push('/articles/list')
+            this.$router.push('/talkothers/list')
              this.$message({
                type:'success',
                message:'保存成功'
            })
         },
         async fetch(){
-            const res = await this.$http.get(`articles/${this.id}`)
+            const res = await this.$http.get(`talkothers/${this.id}`)
             this.model = res.data
         },
-
         async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
             const formData = new FormData();
             formData.append("file", file);
