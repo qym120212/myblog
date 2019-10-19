@@ -27,16 +27,21 @@
             </div>
     </div>
     <div class="articlecomment">
-        <div>
-            <ul>
-                <li v-for="item in model.comments" :key="item.name">{{ item.name }}---{{ item.body }}</li>
-            </ul>
+        <div class="commentlist">    
+                <div v-for="(item,index) in model.comments" :key="index" class="allinfo"> 
+                    <span><img :src="require('../assets/'+item.headIndex+'.jpeg')" alt="" width="50px"></span>
+                    <div class="everyone">
+                        <div class="everyonename">{{ item.name }}</div>
+                        <div class="everyonebody">{{ item.body }}</div>
+                    </div>
+
+                </div>
         </div>
         <hr>
         <div>
             <el-form label-width="120px" @submit.native.prevent="touristsubmit()">
             <el-form-item label="您的昵称">
-                <el-input v-model="tourist.name"></el-input>
+                <el-input v-model="tourist.name" width="150px"></el-input>
             </el-form-item>
             <el-form-item label="请输入评论内容">
                 <el-input  v-model="tourist.body"></el-input>
@@ -61,18 +66,29 @@ export default {
         return {
             model:{},
             tourist:{},
+            headIndex:''
         }
     },
     methods: {
         async fetch(){
             const res = await this.$http.get(`articles/${this.id}`)
             this.model = res.data
-            console.log(this.model);
         },
         async touristsubmit(){
             // const res = await this.$http.post(`articles/${this.id}`,this.tourist)
+            this.tourist.headIndex = Math.floor(Math.random() * 6)
             this.model.comments.push(this.tourist)
             const res = await this.$http.put(`articles/${this.id}`,this.model)
+            // this.$router.push(`/articles/${this.id}`)
+            setTimeout( ()=>{
+                this.tourist.name = ""
+                this.tourist.body = ""
+            },0 )
+             this.$message({
+               type:'success',
+               message:'保存成功'
+        })
+            
         }
     },
     created() {
@@ -115,5 +131,16 @@ export default {
     box-shadow: 5px 5px 20px #e4e3e3;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+.allinfo{
+    margin-bottom: 20px;
+}
+.everyone{
+    display: inline-block;
+    margin-left: 30px;
+    line-height: 32px;
+}
+.everyonename{
+    
 }
 </style>

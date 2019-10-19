@@ -14,7 +14,9 @@ module.exports = app => {
     })
     router.put('/articles/:id',async(req,res)=>{
         const model = await Article.findByIdAndUpdate(req.params.id,req.body)
-        res.send(model)
+        res.send({
+            success:true
+        })
     })
     app.use('/web/api',router)
 }
