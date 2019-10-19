@@ -29,9 +29,10 @@
     <div class="articlecomment">
         <div>
             <ul>
-                <li v-for="item in articlecomments" :key="item._id"></li>
+                <li v-for="item in model.comments" :key="item.name">{{ item.name }}---{{ item.body }}</li>
             </ul>
         </div>
+        <hr>
         <div>
             <el-form label-width="120px" @submit.native.prevent="touristsubmit()">
             <el-form-item label="您的昵称">
@@ -60,7 +61,6 @@ export default {
         return {
             model:{},
             tourist:{},
-            articlecomments:[]
         }
     },
     methods: {
@@ -70,7 +70,9 @@ export default {
             console.log(this.model);
         },
         async touristsubmit(){
-            const res = await this.$http.post(`articles/${this.id}`,this.tourist)
+            // const res = await this.$http.post(`articles/${this.id}`,this.tourist)
+            this.model.comments.push(this.tourist)
+            const res = await this.$http.put(`articles/${this.id}`,this.model)
         }
     },
     created() {
