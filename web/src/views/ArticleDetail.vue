@@ -10,7 +10,7 @@
                     </div>
                     <div class="view">
                     <i class="el-icon-view"></i>
-                    <span>66</span>
+                    <span> {{ this.model.pageviews }} </span>
                     </div>
                      <div class="thumb">
                     <i class="el-icon-thumb"></i>
@@ -18,12 +18,18 @@
                      </div>
                      <div class="comment">
                     <i class="el-icon-chat-dot-square"></i>
-                     <span>2</span>
+                     <span>{{ this.commentsLength}}</span>
                      </div>
                 </div>
             </div>
             <div class="articledetail" v-html="this.model.body">
                 {{ this.model.body }}
+            </div>
+            <div class="footer">  
+                <span v-on:click="iLike()" >
+                    <vue-clap-button :clicked="isClicked" @click="iLike" :colorNormal="likeColor"/>
+                </span>  
+                
             </div>
     </div>
     <div class="articlecomment">
@@ -31,7 +37,7 @@
                 <div v-for="(item,index) in model.comments" :key="index" class="allinfo"> 
                     <span><img :src="require('../assets/'+item.headIndex+'.jpeg')" alt="" width="50px"></span>
                     <div class="everyone">
-                        <div class="everyonename">{{ item.name }}</div>
+                        <div class="everyonename">{{ item.name }} :</div>
                         <div class="everyonebody">{{ item.body }}</div>
                     </div>
 
@@ -41,7 +47,7 @@
         <div>
             <el-form label-width="120px" @submit.native.prevent="touristsubmit()">
             <el-form-item label="您的昵称">
-                <el-input v-model="tourist.name" width="150px"></el-input>
+                <el-input v-model="tourist.name" ></el-input>
             </el-form-item>
             <el-form-item label="请输入评论内容">
                 <el-input  v-model="tourist.body"></el-input>
@@ -58,6 +64,9 @@
     </div>
 </template>
 <script>
+import vueClapButton from 'vue-clap-button'
+import Vue from 'vue'
+Vue.use(vueClapButton);
 export default {
     props:{
     id:{} //这样可以更好的跟路由解耦，不需要再写this.router.params.id这种写法
@@ -66,13 +75,26 @@ export default {
         return {
             model:{},
             tourist:{},
-            headIndex:''
+            headIndex:'',
+            commentsLength:0,
+            isClicked:false,
+            likeColor:'#909399'
         }
     },
     methods: {
         async fetch(){
             const res = await this.$http.get(`articles/${this.id}`)
             this.model = res.data
+            this.commentsLength = this.model.comments.length
+            var likeList = JSON.parse(localStorage.getItem("likeList"));
+            if (!likeList) return;
+            let flag = likeList.some(item => {
+                return item == this.model._id;
+                })
+            if (flag){
+              this.isClicked = true;
+                this.likeColor = '#F56C6C'
+            }
         },
         async touristsubmit(){
             // const res = await this.$http.post(`articles/${this.id}`,this.tourist)
@@ -86,13 +108,36 @@ export default {
             },0 )
              this.$message({
                type:'success',
-               message:'保存成功'
-        })
-            
+               message:'发表成功'
+        }) 
+        },
+        iLike(){
+            const articleId = this.model._id
+            this.likeColor = '#F56C6C';
+            let flag = true
+            if(!localStorage.likeList){
+                const likeArticleList = []
+                likeArticleList.push(articleId)
+                localStorage.setItem("likeList",JSON.stringify(likeArticleList))
+            }else{
+                const likeArticleList = JSON.parse(localStorage.getItem("likeList"))
+                likeArticleList.map( (item)=>{
+                    if(item == articleId){
+                         flag = false
+                    }
+                } )
+                if(flag){
+               likeArticleList.push(articleId)
+                localStorage.setItem("likeList",JSON.stringify(likeArticleList))
+                }
+ 
+             }
+
         }
     },
     created() {
         this.fetch()
+
     },
 }
 </script>
@@ -132,8 +177,19 @@ export default {
     margin-top: 50px;
     margin-bottom: 50px;
 }
+.footer{
+    display: flex;
+    justify-content: center
+}
 .allinfo{
+    display: flex;
     margin-bottom: 20px;
+    width: 70%;
+    align-items: center;
+    border-bottom: 1px solid #e4e3e3
+}
+.allinfo img{
+    border-radius: 50%
 }
 .everyone{
     display: inline-block;
@@ -141,6 +197,10 @@ export default {
     line-height: 32px;
 }
 .everyonename{
-    
+    font-size: 13px;
+    font-weight: bold
+}
+.everyonebody {
+    font-size: 18px;
 }
 </style>
