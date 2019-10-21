@@ -81,8 +81,8 @@ export default {
             const res = await this.$http.put(`articles/${this.id}`,this.model)
             // this.$router.push(`/articles/${this.id}`)
             setTimeout( ()=>{
-                this.tourist.name = ""
-                this.tourist.body = ""
+                this.tourist={}
+                
             },0 )
              this.$message({
                type:'success',
