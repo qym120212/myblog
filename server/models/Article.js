@@ -5,7 +5,8 @@ const schema = new mongoose.Schema({
     body:{ type:String },
     date: { type: Date, default: Date.now },
     comments:[],
-    pageviews:{ type:Number,default: 0 }
+    pageviews:{ type:Number,default: 0 },
+    likecount:{ type:Number,default: 0 }
 })
 
 module.exports = mongoose.model('Article',schema)

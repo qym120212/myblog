@@ -14,7 +14,7 @@
                     </div>
                      <div class="thumb">
                     <i class="el-icon-thumb"></i>
-                     <span>10</span>
+                     <span>{{ this.model.likecount }}</span>
                      </div>
                      <div class="comment">
                     <i class="el-icon-chat-dot-square"></i>
@@ -25,12 +25,13 @@
             <div class="articledetail" v-html="this.model.body">
                 {{ this.model.body }}
             </div>
-            <div class="footer">  
-                <span v-on:click="iLike()" >
+            <div>
+                <div class="footer-icon" v-on:click="iLike()">
                     <vue-clap-button :clicked="isClicked" @click="iLike" :colorNormal="likeColor"/>
-                </span>  
-                
+                </div>  
+                 <div class="footer-detail">{{ this.model.likecount }}人觉得还不错</div>
             </div>
+           
     </div>
     <div class="articlecomment">
         <div class="commentlist">    
@@ -111,7 +112,8 @@ export default {
                message:'发表成功'
         }) 
         },
-        iLike(){
+        async iLike(){
+            const res =  await this.$http.put(`articles/${this.id}`,this.model)
             const articleId = this.model._id
             this.likeColor = '#F56C6C';
             let flag = true
@@ -119,7 +121,9 @@ export default {
                 const likeArticleList = []
                 likeArticleList.push(articleId)
                 localStorage.setItem("likeList",JSON.stringify(likeArticleList))
+                this.model.likecount += 1
             }else{
+                console.log('else');
                 const likeArticleList = JSON.parse(localStorage.getItem("likeList"))
                 likeArticleList.map( (item)=>{
                     if(item == articleId){
@@ -127,12 +131,12 @@ export default {
                     }
                 } )
                 if(flag){
-               likeArticleList.push(articleId)
+                this.model.likecount += 1
+                likeArticleList.push(articleId)
                 localStorage.setItem("likeList",JSON.stringify(likeArticleList))
                 }
  
              }
-
         }
     },
     created() {
@@ -177,10 +181,6 @@ export default {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.footer{
-    display: flex;
-    justify-content: center
-}
 .allinfo{
     display: flex;
     margin-bottom: 20px;
@@ -202,5 +202,15 @@ export default {
 }
 .everyonebody {
     font-size: 18px;
+}
+.ilike{
+    text-align: center
+}
+.footer-icon{
+    display: flex;
+    justify-content: center
+}
+.footer-detail{
+    text-align: center
 }
 </style>
