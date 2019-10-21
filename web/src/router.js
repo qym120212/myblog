@@ -6,6 +6,7 @@ import TalkOtherList from './views/TalkOtherList.vue'
 import CollectionList from './views/CollectionList.vue'
 import MessageList from './views/MessageList.vue'
 import ArticleDetail from './views/ArticleDetail.vue'
+import TalkOtherDetail from './views/TalkOtherDetail.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -19,6 +20,7 @@ export default new Router({
         { path:'/articles',component:ArticleList },
         { path:'/articles/:id',component:ArticleDetail,props:true },//将参数id注入组件
         { path:'/talkothers',component:TalkOtherList },
+        { path:'/talkothers/:id',component:TalkOtherDetail,props:true },//将参数id注入组件
         { path:'/collections',component:CollectionList },
         { path:'/messages',component:MessageList }
       ]

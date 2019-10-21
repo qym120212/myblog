@@ -57,7 +57,7 @@
  border-bottom: solid rgb(255, 184, 126) 3px;
  }
    .router-link-active:nth-of-type(2) {
- border-bottom: solid rgb(94, 0, 122) 3px;
+ border-bottom: solid rgb(17, 118, 235) 3px;
  }
    .router-link-active:nth-of-type(3) {
  border-bottom: solid rgb(124, 228, 115) 3px;
