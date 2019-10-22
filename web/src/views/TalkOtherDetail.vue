@@ -6,7 +6,7 @@
                 <div class="articleinfo">
                     <div class="date">
                     <i class="el-icon-date"></i>
-                    <span>2019-10-19</span>
+                    <span>{{ this.model.date }}</span>
                     </div>
                     <div class="view">
                     <i class="el-icon-view"></i>
@@ -96,6 +96,8 @@ export default {
               this.isClicked = true;
                 this.likeColor = '#F56C6C'
             }
+            var d = new Date(this.model.date);  
+            this.model.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); 
         },
         async touristsubmit(){
             // const res = await this.$http.post(`talkothers/${this.id}`,this.tourist)

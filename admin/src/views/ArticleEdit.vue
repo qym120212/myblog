@@ -5,6 +5,9 @@
       <el-form-item label="标题">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
+       <!-- <el-form-item label="时间">
+        <el-input v-model="model.date"></el-input>
+      </el-form-item> -->
       <el-form-item label="内容">
         <vue-editor v-model="model.body" useCustomImageHandler @image-added="handleImageAdded"></vue-editor>
       </el-form-item>

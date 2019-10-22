@@ -15,9 +15,17 @@
           <a href="#"><img src="../assets/githublogo.jpg" alt="">GitHub</a>
         </div>
     </div>
-    <router-view></router-view>
+    <transition enter-active-class="animated fadeInUp">
+                  <router-view/>
+    </transition>
   </div>
 </template>
+<script>
+import '../css/Animate.css'
+export default {
+  
+}
+</script>
 <style>
 .header{
     background-color: #20232a;
@@ -59,10 +67,11 @@
    .router-link-active:nth-of-type(2) {
  border-bottom: solid rgb(17, 118, 235) 3px;
  }
-   .router-link-active:nth-of-type(3) {
+  .router-link-active:nth-of-type(3) {
  border-bottom: solid rgb(124, 228, 115) 3px;
  }
-   .router-link-active:nth-of-type(4) {
+.router-link-active:nth-of-type(4) {
  border-bottom: solid rgb(255, 126, 137) 3px;
  }
+
 </style>

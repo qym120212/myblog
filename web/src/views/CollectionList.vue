@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="item in items" :key="item._id" @click="articledetail(item._id)"><span class="time">2019-10-18</span><div class="title">{{ item.title }}</div></li>
+            <li v-for="item in items" :key="item._id" @click="collectionLink(item.link)"><span class="time">{{ item.date }}</span><div class="title">{{ item.title }}</div></li>
         </ul>
     </div>
 </template>
@@ -10,16 +10,19 @@ export default {
     data() {
         return {
             items:[],
-            model:{}
         }
     },
     methods: {
         async fetch(){
             const res =await this.$http.get('collections')
             this.items = res.data
+            this.items.map( (item)=>{
+            let d = new Date(item.date);  
+            item.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+            } )
     },
-    articledetail(id){
-            this.$router.push(`/collections/${id}`)
+    collectionLink(link){
+            window.open(link)
     }
     },
     created() {
