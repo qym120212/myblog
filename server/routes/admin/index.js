@@ -7,7 +7,7 @@ module.exports = app =>{
     const TalkOther = require('../../models/TalkOther')
     const Collection = require('../../models/Collection')
     const AdminUser = require('../../models/AdminUser')
-
+    const Comment = require('../../models/Comment')
 
     //登录校验中间件
     const auth = async(req,res,next)=>{
@@ -89,7 +89,18 @@ module.exports = app =>{
         const model = await Collection.findById(req.params.id)
         res.send(model)
     })
-       //----------------------------------------------------------------------------管理员相关
+    //----------------------------------------------------------------------------留言列表相关
+    router.get('/comments',async(req,res)=>{
+        const items = await Comment.find()
+        res.send(items)
+    })
+    router.delete('/comments/:id',auth,async(req,res) => {
+        const model = await Comment.findByIdAndDelete(req.params.id,req.body)
+        res.send({
+            success:true
+        })
+    })
+    //----------------------------------------------------------------------------管理员相关
     router.post('/admin_users',auth,async(req,res) => {
         const model = await AdminUser.create(req.body)
         res.send(model)

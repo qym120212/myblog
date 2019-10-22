@@ -2,15 +2,13 @@
   <div class="about">
     <h1>列表页</h1>
       <el-table :data="items">
-        <el-table-column prop="_id" label="ID" width="220"></el-table-column>
-        <el-table-column prop="title" label="标题名称"></el-table-column>
-         <el-table-column prop="link" label="链接"></el-table-column>
+        <el-table-column prop="name" label="游客姓名" width="220"></el-table-column>
+        <el-table-column prop="body" label="评论内容"></el-table-column>
          <el-table-column
       fixed="right"
       label="操作"
-      width="180">
+      width="100">
       <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="$router.push(`/collections/edit/${scope.row._id}`)">编辑</el-button>
         <el-button type="primary" size="small" @click="remove(scope.row)">删除</el-button>
       </template>
     </el-table-column>
@@ -26,16 +24,17 @@ export default {
   },
   methods: {
     async fetch(){
-      const res =await this.$http.get('collections')
+      const res =await this.$http.get('comments')
       this.items = res.data
+      console.log(this.items);
     },
     async remove(row){
-          this.$confirm(`此操作将永久删除分类${row.name}, 是否继续?`, '提示', {
+          this.$confirm(`此操作将永久删除${row.name}这条评论, 是否继续?`, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          const res = await this.$http.delete(`collections/${row._id}`)
+          const res = await this.$http.delete(`comments/${row._id}`)
           this.$message({
             type: 'success',
             message: '删除成功!'

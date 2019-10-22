@@ -12,17 +12,12 @@
         <vue-editor v-model="model.body" useCustomImageHandler @image-added="handleImageAdded"></vue-editor>
       </el-form-item>
       <el-form-item label="文章评论列表">
-        <el-table :data="commentList">
-          <el-table-column prop="_id" label="ID" width="220"></el-table-column>
-          <el-table-column prop="title" label="标题名称"></el-table-column>
-          <el-table-column prop="link" label="链接"></el-table-column>
-          <el-table-column fixed="right" label="操作" width="180">
+        <el-table :data="this.model.comments">
+          <el-table-column prop="name" label="名称" width="220"></el-table-column>
+          <el-table-column prop="body" label="评论内容"></el-table-column>
+          <el-table-column fixed="right" label="操作" width="100">
             <template slot-scope="scope">
-              <el-button
-                type="primary"
-                size="small"
-                @click="$router.push(`/collections/edit/${scope.row._id}`)"
-              >编辑</el-button>
+
               <el-button type="primary" size="small" @click="remove(scope.row)">删除</el-button>
             </template>
           </el-table-column>
@@ -47,7 +42,6 @@ export default {
   data() {
     return {
       model: {},
-      commentList:[]
     };
   },
   methods: {
@@ -64,6 +58,18 @@ export default {
         message: "保存成功"
       });
     },
+    async saveComments(){
+      let res;
+      if (this.id) {
+        res = await this.$http.put(`articles/${this.id}`, this.model);
+      } else {
+        res = await this.$http.post("articles", this.model);
+      }
+      this.$message({
+        type: "success",
+        message: "保存评论成功"
+      });
+    },
     async fetch() {
       const res = await this.$http.get(`articles/${this.id}`);
       this.model = res.data;
@@ -76,6 +82,15 @@ export default {
       const res = await this.$http.post("upload", formData);
       Editor.insertEmbed(cursorLocation, "image", res.data.url);
       resetUploader();
+    },
+    remove(row){
+      const index = this.model.comments.some( (item,index)=>{
+          if(item.name == row.name){
+            return index
+          }
+      } )
+      this.model.comments.splice(index,1)
+      this.saveComments()
     }
   },
   created() {
