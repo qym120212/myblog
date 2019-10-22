@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>列表页</h1>
-      <el-table :data="items.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))">
+      <el-table :data="((items.filter(data=>!search||data.title.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pageSize,currentPage*pageSize)))">
         <el-table-column prop="date" label="创建时间" width="240"></el-table-column>
         <el-table-column prop="title" label="文章标题"></el-table-column>
             <el-table-column
@@ -22,19 +22,15 @@
           @click="remove(scope.row)">Delete</el-button>
       </template>
     </el-table-column>
- 
-
-
-         <!-- <el-table-column
-      fixed="right"
-      label="操作"
-      width="180">
-      <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="$router.push(`/articles/edit/${scope.row._id}`)">编辑</el-button>
-        <el-button type="primary" size="small" @click="remove(scope.row)">删除</el-button>
-      </template>
-    </el-table-column> -->
       </el-table>
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        :total="this.items.length"
+        layout="total, prev, pager, next"
+      >
+</el-pagination>
   </div>
 </template>
 <script>
@@ -42,7 +38,9 @@ export default {
   data() {
     return {
       items:[],
-      search:""
+      search:"",
+      pageSize:5,
+      currentPage:1
     }
   },
   methods: {
@@ -68,6 +66,9 @@ export default {
             this.fetch()
         })
 
+    },
+    handleCurrentChange(currentPage){
+        this.currentPage = currentPage
     }
   },
   created() {

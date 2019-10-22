@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>列表页</h1>
-      <el-table :data="items">
+      <el-table :data="((items.slice((currentPage-1)*pageSize,currentPage*pageSize)))">
         <el-table-column prop="name" label="游客姓名" width="220"></el-table-column>
         <el-table-column prop="body" label="评论内容"></el-table-column>
          <el-table-column
@@ -12,21 +12,31 @@
         <el-button type="primary" size="small" @click="remove(scope.row)">删除</el-button>
       </template>
     </el-table-column>
+    
       </el-table>
+<el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        :total="this.items.length"
+        layout="total, prev, pager, next"
+      >
+</el-pagination>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      items:[]
+      items:[],
+      pageSize:10,
+      currentPage:1
     }
   },
   methods: {
     async fetch(){
       const res =await this.$http.get('comments')
       this.items = res.data
-      console.log(this.items);
     },
     async remove(row){
           this.$confirm(`此操作将永久删除${row.name}这条评论, 是否继续?`, '提示', {
@@ -42,6 +52,9 @@ export default {
             this.fetch()
         })
 
+    },
+    handleCurrentChange(currentPage){
+       this.currentPage = currentPage
     }
   },
   created() {

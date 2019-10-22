@@ -22,18 +22,14 @@
           @click="remove(scope.row)">Delete</el-button>
       </template>
     </el-table-column>
- 
-
-
-         <!-- <el-table-column
-      fixed="right"
-      label="操作"
-      width="180">
-      <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="$router.push(`/talkothers/edit/${scope.row._id}`)">编辑</el-button>
-        <el-button type="primary" size="small" @click="remove(scope.row)">删除</el-button>
-      </template>
-    </el-table-column> -->
+          <el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        :total="this.items.length"
+        layout="total, prev, pager, next"
+      >
+</el-pagination>
       </el-table>
   </div>
 </template>
@@ -42,7 +38,9 @@ export default {
   data() {
     return {
       items:[],
-      search:""
+      search:"",
+      pageSize:5,
+      currentPage:1
     }
   },
   methods: {
