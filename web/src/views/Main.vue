@@ -3,18 +3,12 @@
     <div class="header">
       <div class="logo">
         <img src="../assets/dog.jpg" alt />
-        <span class="display">mingo's blog</span>
       </div>
       <div class="link">
         <router-link to="/articles">文章</router-link>
         <router-link to="/talkothers">随笔</router-link>
         <router-link to="/collections">收藏</router-link>
         <router-link to="/messages">留言</router-link>
-      </div>
-      <div class="otherlink">
-        <a href="#">
-          <img src="../assets/githublogo.jpg" alt />GitHub
-        </a>
       </div>
     </div>
     <div class="container">
@@ -30,26 +24,32 @@ export default {};
 </script>
 <style>
 .header {
-  background-color: #20232a;
+  background-color: white;
   display: flex;
-  height: 80px;
-  width: 100%;
+  height: 90px;
+  width: 90%;
   margin: auto;
   justify-content: space-around;
   align-items: center;
+  border-bottom: .5px solid #e4e4e4;
+  font-size: 18px;
+  margin: 0 90px;
+}
+.header .router-link-active{
+  color: #000 !important;
 }
 .link {
-  margin-right: 25%;
+  margin-left: 60%;
 }
 a {
-  color: aliceblue;
+  color: #999595;
   padding: 15px;
   text-decoration: none;
   font-size: 20px;
-  margin-right: 10px;
+  margin-right: 50px;
 }
 a:hover {
-  color: #61dafb;
+  color: #f54d4d;
 }
 .logo img {
   height: 50px;
