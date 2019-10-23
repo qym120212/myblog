@@ -1,63 +1,153 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="item in items" :key="item._id" @click="collectionLink(item.link)"><span class="time">{{ item.date }}</span><div class="title">{{ item.title }}</div></li>
-        </ul>
+  <div style="min-height: 100vh;">
+    <div class="bloglist">
+      <ul class="list">
+        <li v-for="item in items" :key="item._id" @click="collectionlink(item.link)">
+          <span class="time">{{ item.date }}</span>
+          <div class="title">{{ item.title }}</div>
+        </li>
+      </ul>
+      <div class="slider">
+        <div class="search">
+          <el-input placeholder="请输入关键词搜索" class="einput"></el-input>
+          <button class="btn">
+            <img src="../assets/search.png" alt height="25px" class="btn" />
+          </button>
+        </div>
+        <div class="notice">
+          <div class="noticeheader">
+            <h3 class="noticetitle">公告</h3>
+            <p class="noticeinfo">
+              这里是曲源明的个人博客，总结自己在前端领域的所学
+              <br />分为原创文章板块，随笔板块，收藏板块和留言板
+              <br />如果内容对您有所帮助，欢迎点赞评论
+            </p>
+          </div>
+          <div class="noticeaddress">
+              <p>联系我:qym3009@foxmail.com</p>
+              <div>
+                  <a href="https://github.com/qym120212">
+                       <img src="../assets/githublogo.jpg" alt="">
+                  </a>
+                 
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            items:[],
-        }
+  data() {
+    return {
+      items: []
+    };
+  },
+  methods: {
+    async fetch() {
+      const res = await this.$http.get("collections");
+      this.items = res.data;
+      this.items.map(item => {
+        let d = new Date(item.date);
+        item.date =
+          d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      });
     },
-    methods: {
-        async fetch(){
-            const res =await this.$http.get('collections')
-            this.items = res.data
-            this.items.map( (item)=>{
-            let d = new Date(item.date);  
-            item.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-            } )
-    },
-    collectionLink(link){
-            window.open(link)
+    collectionlink(link){
+        window.open(link)
     }
-    },
-    created() {
-        this.fetch()
-    },
-}
+  },
+  created() {
+    this.fetch();
+  }
+};
 </script>
 <style scoped>
-ul{
-    margin-top: 50px;
-    margin-left:30px;
+.bloglist {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 40px 0;
 }
-li{
-    list-style: none;
-    height: 150px;
-    width: 70%;
-    display: flex;
-    align-items: center;
-    border: 1px solid white;
-    box-shadow: 5px 5px 20px #e4e3e3;
-    margin-bottom: 20px;
-    font-size: 19px;
-    border-left: 12px solid rgb(166, 235, 189);
-    transition: 0.3s
+ul {
+  margin-top: 50px;
+  margin-left: 30px;
+  width: 56%;
+  display: inline-block;
 }
-li .title{
-    margin-left: 50px;
+li {
+  list-style: none;
+  height: 95px;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  box-shadow: 5px 5px 20px #e4e3e3;
+  margin-bottom: 20px;
+  font-size: 19px;
+  border-left: 12px solid rgb(248, 162, 183);
+  transition: 0.4s;
+  line-height: 1.5em;
 }
-li .time{
-    margin-left: 20px;
-    color: #575757
+li .title {
+  margin-left: 50px;
 }
-li:hover{
-    cursor: pointer;
-    border-left: 12px solid rgb(101, 230, 90);
-    transform: scale(1.03);
+li .time {
+  margin-left: 20px;
+  color: #575757;
+}
+li:hover {
+  cursor: pointer;
+  border-left: 12px solid rgb(255, 126, 159);
+  transform: scale(1.03);
+}
+.infome {
+  display: inline-block;
+}
+.slider {
+  width: 36%;
+}
+.einput >>> .el-input__inner {
+  border-color: rgb(255, 126, 159);
+  border-radius: 10px 0px 0px 10px;
+}
+.btn {
+  background-color: rgb(255, 126, 159);
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+}
+.search {
+  margin: 50px;
+  width: 30%;
+  display: flex;
+}
+.notice{
+width: 80%;
+height: 50%;
+margin: 30px auto;
+margin-left: 50px;
+box-shadow: 5px 5px 20px #e4e3e3;    
+}
+.noticeheader {
+  padding: 10px 30px;
+}
+.noticetitle {
+  border-bottom: 0.5px solid #e4e4e4;
+  padding-bottom: 10px;
+}
+.noticeinfo {
+  line-height: 1.8em;
+  font-size: 14px;
+}
+.noticeaddress {
+  background-color:rgb(246, 246, 246);
+  height: 92px;
+  padding: 2px 20px
+}
+.noticeaddress p{
+    font-size: 13px;
+}
+.noticeaddress img{
+    height:20px;
+    border-radius: 50%
 }
 </style>
