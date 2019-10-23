@@ -9,8 +9,8 @@
       </ul>
       <div class="slider">
         <div class="search">
-          <el-input placeholder="请输入关键词搜索" class="elinput"></el-input>
-          <button class="btn">
+          <el-input placeholder="请输入关键词搜索" class="elinput" v-model="keywords"></el-input>
+          <button class="btn" @click="search(keywords)">
             <img src="../assets/search.png" alt height="25px" class="btn" />
           </button>
         </div>
@@ -53,7 +53,8 @@ export default {
       items: [],
       arr:[],
       pageSize:6,
-      currentPage:1
+      currentPage:1,
+      keywords:''
     };
   },
   methods: {
@@ -73,6 +74,19 @@ export default {
     handleCurrentChange(currentPage){
     this.currentPage = currentPage
     this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
+    },
+    search(key){
+      if(!key){
+        this.fetch()
+      }
+      let arr1 = []
+      this.items.map( (item)=>{
+       if(item.title.includes(key)){
+         arr1.push(item)
+       }
+      })
+      this.items = arr1
+      this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
     }
   },
   created() {
@@ -128,10 +142,11 @@ li:hover {
   border-radius: 10px 0px 0px 10px;
 }
 .btn {
-  background: #fdb274;
   background-color: #fdb274;
   border: none;
   border-radius: 0px 10px 10px 0px;
+  outline: none;
+  cursor: pointer;
 }
 .search {
   margin: 50px;
@@ -140,7 +155,7 @@ li:hover {
 }
 .notice {
   width: 80%;
-  height: 30%;
+  height: 200px;
   margin: 30px auto;
   margin-left: 50px;
   box-shadow: 5px 5px 20px #e4e3e3;
