@@ -36,7 +36,7 @@ export default {
   methods: {
     async fetch(){
       const res =await this.$http.get('comments')
-      this.items = res.data
+      this.items = res.data.reverse()
     },
     async remove(row){
           this.$confirm(`此操作将永久删除${row.name}这条评论, 是否继续?`, '提示', {

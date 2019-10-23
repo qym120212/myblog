@@ -25,12 +25,10 @@ export default {};
 <style>
 .header {
   background-color: white;
-  display: flex;
+  justify-content: space-around;
   height: 90px;
   width: 90%;
   margin: auto;
-  justify-content: space-around;
-  align-items: center;
   border-bottom: .5px solid #e4e4e4;
   font-size: 18px;
   margin: 0 90px;
@@ -38,18 +36,26 @@ export default {};
 .header .router-link-active{
   color: #000 !important;
 }
+
 .link {
-  margin-left: 60%;
+  float: right;
+  margin-top: 35px;
+  margin-right: 50px;
 }
 a {
   color: #999595;
   padding: 15px;
   text-decoration: none;
   font-size: 20px;
-  margin-right: 50px;
+  margin-right: 80px;
 }
 a:hover {
   color: #f54d4d;
+}
+.logo{
+  float: left;
+  margin-top: 20px;
+  margin-left: 30px;
 }
 .logo img {
   height: 50px;

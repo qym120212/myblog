@@ -47,7 +47,7 @@ export default {
   methods: {
     async fetch() {
       const res = await this.$http.get("talkothers");
-      this.items = res.data;
+      this.items = res.data.reverse()
       this.items.map(item => {
         let d = new Date(item.date);
         item.date =
