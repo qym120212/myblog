@@ -2,7 +2,7 @@
   <div style="min-height: 100vh;">
     <div class="bloglist">
       <ul class="list">
-        <li v-for="item in items" :key="item._id" @click="articledetail(item._id)">
+        <li v-for="item in arr" :key="item._id" @click="articledetail(item._id)">
           <span class="time">{{ item.date }}</span>
           <div class="title">{{ item.title }}</div>
         </li>
@@ -24,16 +24,24 @@
             </p>
           </div>
           <div class="noticeaddress">
-              <p>联系我:qym3009@foxmail.com</p>
-              <div>
-                  <a href="https://github.com/qym120212">
-                       <img src="../assets/githublogo.jpg" alt="">
-                  </a>
-                 
-              </div>
+            <p>联系我:qym3009@foxmail.com</p>
+            <div>
+              <a href="https://github.com/qym120212">
+                <img src="../assets/githublogo.jpg" alt />
+              </a>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="page">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        :total="this.items.length"
+        layout="total, prev, pager, next"
+      ></el-pagination>
     </div>
   </div>
 </template>
@@ -41,21 +49,35 @@
 export default {
   data() {
     return {
-      items: []
+      items: [],
+      arr: [],
+      pageSize: 6,
+      currentPage: 1
     };
   },
   methods: {
     async fetch() {
       const res = await this.$http.get("talkothers");
-      this.items = res.data.reverse()
+      this.items = res.data.reverse();
       this.items.map(item => {
         let d = new Date(item.date);
         item.date =
           d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       });
+      this.arr = this.items.slice(
+        (this.currentPage - 1) * this.pageSize,
+        this.currentPage * this.pageSize
+      );
     },
     articledetail(id) {
       this.$router.push(`/talkothers/${id}`);
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      this.arr = this.items.slice(
+        (this.currentPage - 1) * this.pageSize,
+        this.currentPage * this.pageSize
+      );
     }
   },
   created() {
@@ -120,12 +142,12 @@ li:hover {
   width: 30%;
   display: flex;
 }
-.notice{
-width: 80%;
-height: 50%;
-margin: 30px auto;
-margin-left: 50px;
-box-shadow: 5px 5px 20px #e4e3e3;    
+.notice {
+  width: 80%;
+  height: 50%;
+  margin: 30px auto;
+  margin-left: 50px;
+  box-shadow: 5px 5px 20px #e4e3e3;
 }
 .noticeheader {
   padding: 10px 30px;
@@ -139,15 +161,30 @@ box-shadow: 5px 5px 20px #e4e3e3;
   font-size: 14px;
 }
 .noticeaddress {
-  background-color:rgb(246, 246, 246);
+  background-color: rgb(246, 246, 246);
   height: 92px;
-  padding: 2px 20px
+  padding: 2px 20px;
 }
-.noticeaddress p{
-    font-size: 13px;
+.noticeaddress p {
+  font-size: 13px;
 }
-.noticeaddress img{
-    height:20px;
-    border-radius: 50%
+.noticeaddress img {
+  height: 20px;
+  border-radius: 50%;
+}
+.page {
+  margin-left: 120px;
+}
+.page >>> .el-pager li.active{
+    color: rgb(17, 118, 235); 
+}
+.page >>> .el-pager li:hover{
+    color: rgb(17, 118, 235);
+}
+.page >>> .el-pagination .btn-next:hover{
+    color: rgb(17, 118, 235);
+}
+.page >>> .el-pagination .btn-prev:hover{
+    color: rgb(17, 118, 235);
 }
 </style>

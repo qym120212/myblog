@@ -86,6 +86,8 @@ export default {
         async fetch(){
             const res = await this.$http.get(`articles/${this.id}`)
             this.model = res.data
+            var d = new Date(this.model.date);
+            this.model.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); 
             this.commentsLength = this.model.comments.length
             var likeList = JSON.parse(localStorage.getItem("likeList"));
             if (!likeList) return;
@@ -96,8 +98,6 @@ export default {
               this.isClicked = true;
                 this.likeColor = '#F56C6C'
             }
-            var d = new Date(this.model.date);  
-            this.model.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); 
         },
         async touristsubmit(){
             // const res = await this.$http.post(`articles/${this.id}`,this.tourist)
@@ -115,7 +115,6 @@ export default {
         }) 
         },
         async iLike(){
-            const res =  await this.$http.put(`articles/${this.id}`,this.model)
             const articleId = this.model._id
             this.likeColor = '#F56C6C';
             let flag = true
@@ -139,6 +138,7 @@ export default {
                 }
  
              }
+            const res =  await this.$http.put(`articles/${this.id}`,this.model)
         },
     },
     created() {

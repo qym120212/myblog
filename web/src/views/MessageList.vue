@@ -1,7 +1,7 @@
 <template>
   <div class="articlecomment">
     <div class="commentlist">
-      <div v-for="(item,index) in comments" :key="index" class="allinfo">
+      <div v-for="(item,index) in arr" :key="index" class="allinfo">
         <span>
           <img :src="require('../assets/'+item.headIndex+'.jpeg')" alt width="50px" />
         </span>
@@ -9,6 +9,15 @@
           <div class="everyonename">{{ item.name }} :</div>
           <div class="everyonebody">{{ item.body }}</div>
         </div>
+      </div>
+      <div class="page">
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+          :current-page="currentPage"
+          :total="this.comments.length"
+          layout="total, prev, pager, next"
+        ></el-pagination>
       </div>
     </div>
 
@@ -19,21 +28,6 @@
         <el-button native-type="submit">提交</el-button>
       </el-form>
     </div>
-    <!-- <div>
-            <el-form label-width="120px" @submit.native.prevent="save()">
-            <el-form-item label="您的昵称">
-                <el-input v-model="model.name" ></el-input>
-            </el-form-item>
-            <el-form-item label="请输入评论内容">
-                <el-input  v-model="model.body"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" native-type="submit">
-                    提交
-                </el-button>
-            </el-form-item>
-            </el-form>
-    </div>-->
   </div>
 </template>
 <script>
@@ -43,28 +37,57 @@ export default {
       model: {
         name: "",
         body: "",
-        headIndex: "",
+        headIndex: ""
       },
       comments: "",
-      headIndex: 1
+      headIndex: 1,
+      arr: [],
+      pageSize: 9,
+      currentPage: 1
     };
   },
   methods: {
     async fetch() {
       const res = await this.$http.get("comments");
-      this.comments = res.data.reverse()
+      this.comments = res.data.reverse();
+      this.arr = this.comments.slice(
+        (this.currentPage - 1) * this.pageSize,
+        this.currentPage * this.pageSize
+      );
+      console.log(this.arr);
     },
     async save() {
-      this.model.headIndex = Math.floor(Math.random() * 6);
-      const res = await this.$http.post("comments", this.model);
-      this.$message({
-        type: "success",
-        message: "发布成功"
-      });
-      setTimeout(() => {
-        this.model = {};
-      }, 0);
-      this.fetch();
+      if (this.model.name) {
+        if (this.model.body) {
+          this.model.headIndex = Math.floor(Math.random() * 6);
+          const res = await this.$http.post("comments", this.model);
+          this.$message({
+            type: "success",
+            message: "发布成功"
+          });
+          setTimeout(() => {
+            this.model = {};
+          }, 0);
+          this.fetch();
+        } else {
+          this.$message({
+            type: "error",
+            message: "写点东西吧"
+          });
+        }
+      } else {
+        this.$message({
+          type: "error",
+          message: "请输入尊姓大名"
+        });
+      }
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      this.arr = this.comments.slice(
+        (this.currentPage - 1) * this.pageSize,
+        this.currentPage * this.pageSize
+      );
     }
   },
   created() {
@@ -144,5 +167,17 @@ export default {
 .el-button:hover {
   color: blueviolet;
   border-color: blueviolet;
+}
+.page >>> .el-pager li.active{
+    color: rgb(184, 93, 212) 
+}
+.page >>> .el-pager li:hover{
+    color: rgb(184, 93, 212)
+}
+.page >>> .el-pagination .btn-next:hover{
+    color: rgb(184, 93, 212)
+}
+.page >>> .el-pagination .btn-prev:hover{
+    color: rgb(184, 93, 212)
 }
 </style>
