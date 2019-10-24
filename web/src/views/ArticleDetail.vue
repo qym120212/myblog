@@ -81,6 +81,7 @@ export default {
   },
   methods: {
     async fetch() {
+        this.limit()
       const res = await this.$http.get(`articles/${this.id}`);
       this.model = res.data;
       var d = new Date(this.model.date);
@@ -96,10 +97,8 @@ export default {
         this.isClicked = true;
         this.likeColor = "#F56C6C";
       }
-    this.limit()
     },
     limit(body) {
-        console.log('LIMIT');
       let commentstorage;
       if (localStorage.getItem("key")) {
         commentstorage = JSON.parse(localStorage.getItem("key"));
@@ -111,6 +110,7 @@ export default {
       }
       localStorage.setItem("key", JSON.stringify(commentstorage));
       if (commentstorage.length > 3) {
+     
         this.loading = true;
         this.btn = "过会再评论吧~~";
         setTimeout(() => {

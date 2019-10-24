@@ -81,6 +81,7 @@ export default {
   },
   methods: {
     async fetch() {
+      this.limit()
       const res = await this.$http.get(`talkothers/${this.id}`);
       this.model = res.data;
       var d = new Date(this.model.date);
@@ -96,7 +97,6 @@ export default {
         this.isClicked = true;
         this.likeColor = "#F56C6C";
       }
-      this.limit()
     },
     limit(body) {
       let commentstorage;

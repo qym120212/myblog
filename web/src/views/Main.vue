@@ -16,6 +16,13 @@
         <router-view />
       </transition>
     </div>
+    <div class="footer">
+      <div class="webdetail">
+        <span>ICP备案：苏ICP备19034670号-1</span>
+      <span><img src="../assets/beian.png" alt="">
+        苏公网安备 32058102001549号</span><a href=""></a>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -83,5 +90,15 @@ a:hover {
 }
 .container{
   height: 1500px;
+}
+.footer{
+  height: 70px;
+  background-color: #ebebeb;
+}
+.webdetail{
+  padding: 20px 350px;
+    display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 </style>
