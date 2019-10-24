@@ -59,7 +59,6 @@ export default {
       this.limit()
     },
     limit(body) {
-      document.getElementById('elbtn').nodeValue = "asdas"
       let commentstorage;
       if (localStorage.getItem("key")) {
         commentstorage = JSON.parse(localStorage.getItem("key"));
