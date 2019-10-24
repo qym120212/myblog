@@ -25,7 +25,7 @@
       <el-form @submit.native.prevent="save()">
         <el-input placeholder="请输入您的昵称" class="elinput" v-model="model.name"></el-input>
         <el-input type="textarea" placeholder="请输入评论内容" v-model="model.body" class="eltextarea"></el-input>
-        <el-button native-type="submit">提交</el-button>
+        <el-button id="elbtn" native-type="submit" :loading="loading">{{ this.btn }}</el-button>
       </el-form>
     </div>
   </div>
@@ -43,7 +43,9 @@ export default {
       headIndex: 1,
       arr: [],
       pageSize: 9,
-      currentPage: 1
+      currentPage: 1,
+      loading: false,
+      btn:'提交评论'
     };
   },
   methods: {
@@ -54,7 +56,28 @@ export default {
         (this.currentPage - 1) * this.pageSize,
         this.currentPage * this.pageSize
       );
-      console.log(this.arr);
+      this.limit()
+    },
+    limit(body) {
+      document.getElementById('elbtn').nodeValue = "asdas"
+      let commentstorage;
+      if (localStorage.getItem("key")) {
+        commentstorage = JSON.parse(localStorage.getItem("key"));
+      } else {
+        commentstorage = [];
+      }
+      if(body){
+        commentstorage.push(body);
+      }
+      localStorage.setItem("key", JSON.stringify(commentstorage));
+      if (commentstorage.length > 3) {
+        this.loading = true;
+        this.btn = '过会再评论吧~~'
+        setTimeout(()=>{
+            localStorage.clear()
+            this.loading = false
+        },30000)
+      }
     },
     async save() {
       if (this.model.name) {
@@ -65,6 +88,7 @@ export default {
             type: "success",
             message: "发布成功"
           });
+          this.limit(this.model.body)
           setTimeout(() => {
             this.model = {};
           }, 0);
@@ -168,16 +192,16 @@ export default {
   color: blueviolet;
   border-color: blueviolet;
 }
-.page >>> .el-pager li.active{
-    color: rgb(184, 93, 212) 
+.page >>> .el-pager li.active {
+  color: rgb(184, 93, 212);
 }
-.page >>> .el-pager li:hover{
-    color: rgb(184, 93, 212)
+.page >>> .el-pager li:hover {
+  color: rgb(184, 93, 212);
 }
-.page >>> .el-pagination .btn-next:hover{
-    color: rgb(184, 93, 212)
+.page >>> .el-pagination .btn-next:hover {
+  color: rgb(184, 93, 212);
 }
-.page >>> .el-pagination .btn-prev:hover{
-    color: rgb(184, 93, 212)
+.page >>> .el-pagination .btn-prev:hover {
+  color: rgb(184, 93, 212);
 }
 </style>

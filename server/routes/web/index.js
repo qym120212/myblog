@@ -80,8 +80,10 @@ module.exports = app => {
         res.send(items)
     })
     router.post('/comments',async(req,res) => {
+
         const model = await Comment.create(req.body)
         res.send(model)
+        
     })
 
     app.use('/web/api',router)
