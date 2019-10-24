@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">
       <div class="logo">
-        <img src="../assets/dog.jpg" alt />
+        <img src="../assets/weblogo.jpg" alt />
       </div>
       <div class="link">
         <router-link to="/articles">文章</router-link>
@@ -65,7 +65,7 @@ a:hover {
   margin-left: 30px;
 }
 .logo img {
-  height: 50px;
+  height: 60px;
   border-radius: 50%;
 }
 .display {
