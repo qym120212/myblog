@@ -18,9 +18,10 @@
     </div>
     <div class="footer">
       <div class="webdetail">
-        <span>ICP备案：苏ICP备19034670号-1</span>
-      <span><img src="../assets/beian.png" alt="">
-        苏公网安备 32058102001549号</span><a href=""></a>
+        <a href="http://beian.miit.gov.cn">
+        <span>ICP备案：豫ICP备19037416号</span></a>
+      <a href="http://baidu.com"><img src="../assets/beian.png" alt="">
+         稍后再写</a>
       </div>
     </div>
   </div>
@@ -92,12 +93,12 @@ a:hover {
   height: 1500px;
 }
 .footer{
-  height: 70px;
+  height: 100px;
   background-color: #ebebeb;
 }
 .webdetail{
   padding: 20px 350px;
-    display: flex;
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
