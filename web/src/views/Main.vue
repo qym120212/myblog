@@ -90,9 +90,10 @@ a:hover {
   border-bottom: solid rgb(184, 93, 212) 3px;
 }
 .container{
-  height: 1500px;
+  min-height: 1500px;
 }
 .footer{
+  bottom:0;
   height: 100px;
   background-color: #ebebeb;
 }

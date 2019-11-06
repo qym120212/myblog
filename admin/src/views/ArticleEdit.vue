@@ -84,13 +84,13 @@ export default {
       resetUploader();
     },
     remove(row){
-      const index = this.model.comments.some( (item,index)=>{
+        this.model.comments.filter( (item,index)=>{
           if(item.name == row.name){
-            return index
+            this.model.comments.splice(index,1)
+            this.saveComments()
           }
       } )
-      this.model.comments.splice(index,1)
-      this.saveComments()
+    
     }
   },
   created() {
