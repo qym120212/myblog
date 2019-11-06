@@ -21,7 +21,7 @@
         <a href="http://beian.miit.gov.cn">
         <span>ICP备案：豫ICP备19037416号</span></a>
       <a href="http://baidu.com"><img src="../assets/beian.png" alt="">
-         稍后再写</a>
+         稍后再写...</a>
       </div>
     </div>
   </div>
