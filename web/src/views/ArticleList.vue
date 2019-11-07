@@ -208,4 +208,44 @@ li:hover {
 .page >>> .el-pagination .btn-prev:hover{
     color: rgb(255, 184, 126);
 }
+@media screen and (max-width: 500px){
+  ul{
+    width: 95%;
+    margin-top: 0px;
+    margin-left: -30px;
+  }
+  .bloglist{
+    padding: 10px 20px 0;
+  }
+  li{
+    height: 80px;
+  }
+  .slider{
+    position: relative;
+    width: 100%;
+  }
+  .search{
+    margin: 10px 20px 0;
+        order: -1
+  }
+  .elinput >>> .el-input__inner {
+  border-color: rgb(255, 184, 126);
+  border-radius: 10px 0px 0px 10px;
+  width: 260px;
+}
+  .btn{
+    margin-left: 80px;
+  }
+  .notice{
+    position: absolute;
+    width: 90%;
+    min-height: 300px;
+    margin-left: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+  }
+  .noticeheader{
+    
+  }
+}
 </style>
