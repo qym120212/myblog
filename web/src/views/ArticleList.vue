@@ -232,7 +232,8 @@ li:hover {
   width: 16.25rem;
 }
   .btn{
-    margin-left: 5rem;
+    margin-left: 4.6875rem;
+    height: 2.5rem;
   }
   .notice{
     position: absolute;

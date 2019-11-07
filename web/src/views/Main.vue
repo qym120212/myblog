@@ -18,9 +18,9 @@
     </div>
     <div class="footer">
       <div class="webdetail">
-        <div>ICP备案：苏ICP备19034670号-1</div>
+        <div>ICP备案：等审批</div>
       <div><img src="../assets/beian.png" alt="">
-        苏公网安备 32058102001549号</div><a href=""></a>
+        等审批</div><a href=""></a>
       </div>
     </div>
   </div>
