@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="maincontainer">
     <div class="header">
       <div class="logo">
         <img src="../assets/weblogo.jpg" alt />
@@ -18,10 +18,9 @@
     </div>
     <div class="footer">
       <div class="webdetail">
-        <a href="http://beian.miit.gov.cn">
-        <span>ICP备案：豫ICP备19037416号</span></a>
-      <a href="http://baidu.com"><img src="../assets/beian.png" alt="">
-         稍后再写...</a>
+        <span>ICP备案：苏ICP备19034670号-1</span>
+      <span><img src="../assets/beian.png" alt="">
+        苏公网安备 32058102001549号</span><a href=""></a>
       </div>
     </div>
   </div>
@@ -31,41 +30,53 @@ import "../css/Animate.css";
 export default {};
 </script>
 <style>
+@media screen and (max-width: 500px){
+  .header{
+    height: 60px !important;
+    margin: 0 auto 15px !important
+  }
+  .header .logo img{
+    margin-top: 10px;
+    height: 40px !important;
+  }
+  .link{
+    width: 70% !important;
+    font-size: 14px;
+    padding: 10px;
+   }
+}
 .header {
-  background-color: white;
-  justify-content: space-around;
   height: 90px;
   width: 90%;
   margin: auto;
   border-bottom: .5px solid #e4e4e4;
-  font-size: 18px;
-  margin: 0 90px;
+  font-size: 18px
 }
 .header .router-link-active{
   color: #000 !important;
 }
 
 .link {
-  float: right;
-  margin-top: 35px;
-  margin-right: 50px;
+  position: absolute;
+  right: 0;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
 }
 a {
   color: #999595;
-  padding: 15px;
   text-decoration: none;
-  font-size: 20px;
-  margin-right: 80px;
 }
 a:hover {
   color: #f54d4d;
 }
 .logo{
-  float: left;
   margin-top: 20px;
   margin-left: 30px;
 }
 .logo img {
+  position: absolute;
   height: 60px;
   border-radius: 50%;
 }
@@ -90,16 +101,15 @@ a:hover {
   border-bottom: solid rgb(184, 93, 212) 3px;
 }
 .container{
-  min-height: 1500px;
+  height: 1500px;
 }
 .footer{
-  bottom:0;
-  height: 100px;
+  height: 70px;
   background-color: #ebebeb;
 }
 .webdetail{
   padding: 20px 350px;
-  display: flex;
+    display: flex;
   justify-content: space-around;
   align-items: center;
 }

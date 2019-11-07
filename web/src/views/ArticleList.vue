@@ -106,6 +106,16 @@ ul {
   width: 56%;
   display: inline-block;
 }
+@media screen and (max-width: 500px){
+  ul{
+    width: 90%;
+    margin-top: 0px;
+    margin-left: -20px;
+  }
+  .bloglist{
+    padding: 10px 20px 0;
+  }
+}
 li {
   list-style: none;
   height: 100px;
