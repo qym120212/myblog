@@ -118,6 +118,102 @@ export default {
   }
 };
 </script>
+<template>
+  <div style="min-height: 100vh;">
+    <div class="bloglist">
+      <ul class="list">
+        <li v-for="item in arr" :key="item._id" @click="articledetail(item._id)">
+          <span class="time">{{ item.date }}</span>
+          <div class="title">{{ item.title }}</div>
+        </li>
+      </ul>
+      <div class="slider">
+        <div class="search">
+          <el-input placeholder="请输入关键词搜索" class="elinput" v-model="keywords"></el-input>
+          <button class="btn" @click="search(keywords)">
+            <img src="../assets/search.png" class="btn" />
+          </button>
+        </div>
+        <div class="notice">
+          <div class="noticeheader">
+            <h3 class="noticetitle">公告</h3>
+            <p class="noticeinfo">
+              这里是曲源明的个人博客，总结自己在前端领域的所学
+              <br />分为原创文章板块，随笔板块，收藏板块和留言板
+              <br />如果内容对您有所帮助，欢迎点赞评论
+            </p>
+          </div>
+          <div class="noticeaddress">
+            <p>联系我:qym3009@foxmail.com</p>
+            <div>
+              <a href="https://github.com/qym120212">
+                <img src="../assets/githublogo.jpg" alt />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+            <el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        :total="this.items.length"
+        layout="total, prev, pager, next"
+      >
+</el-pagination>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      items: [],
+      arr:[],
+      pageSize:6,
+      currentPage:1,
+      keywords:''
+    };
+  },
+  methods: {
+    async fetch() {
+      const res = await this.$http.get("articles");
+      this.items = res.data.reverse()
+      this.items.map(item => {
+        let d = new Date(item.date);
+        item.date =
+          d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      });
+      this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
+    },
+    articledetail(id) {
+      this.$router.push(`/articles/${id}`);
+    },
+    handleCurrentChange(currentPage){
+    this.currentPage = currentPage
+    this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
+    },
+    search(key){
+      if(!key){
+        this.fetch()
+      }
+      let arr1 = []
+      this.items.map( (item)=>{
+       if(item.title.includes(key)){
+         arr1.push(item)
+       }
+      })
+      this.items = arr1
+      this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
+    }
+  },
+  created() {
+    this.fetch();
+  }
+};
+</script>
 <style scoped>
 .bloglist {
   display: flex;
@@ -257,6 +353,7 @@ li:hover {
 }
   .btn{
     margin-left: 5rem;
+    height:2.5rem ;
   }
   .notice{
     display: flex;
@@ -292,9 +389,6 @@ li:hover {
   }
   .noticeaddress p{
     flex: 1
-  }
-  .notice a{
-  
   }
   .page{
     display: flex;
