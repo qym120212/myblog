@@ -124,7 +124,7 @@ li {
   box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
   margin-bottom: 1.25rem;
   font-size: 1.1875rem;
-  border-left: 0.75rem solid #ffe0c7;
+  border-left: 0.75rem solid rgb(113, 174, 248);
   transition: 0.4s;
   line-height: 1.5em;
 }
