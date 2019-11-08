@@ -119,88 +119,187 @@ export default {
 };
 </script>
 <style scoped>
-.articlecomment {
-  width: 90%;
-  margin: auto;
-  padding: 30px 40px 35px;
-  margin-bottom: 50px;
-}
-.commentlist {
-  display: inline-block;
-  width: 40%;
-  float: left;
-}
-.form {
-  display: inline-block;
-  width: 10%;
-}
-.allinfo {
+.bloglist {
   display: flex;
-  margin-bottom: 20px;
-  width: 70%;
-  align-items: center;
-  border-bottom: 1px solid #e4e3e3;
+  flex-wrap: wrap;
+  padding: 0rem 2.5rem 0;
 }
-.allinfo img {
+ul {
+  margin-top: 3.125rem;
+  margin-left: 1.875rem;
+  width: 56%;
+  display: inline-block;
+}
+li {
+  list-style: none;
+  height: 6.25rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid white;
+  box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
+  margin-bottom: 1.25rem;
+  font-size: 1.1875rem;
+  border-left: 0.75rem solid #ffe0c7;
+  transition: 0.4s;
+  line-height: 1.5em;
+}
+li .title {
+  margin-left: 3.125rem;
+}
+li .time {
+  margin-left: 1.25rem;
+  color: #575757;
+}
+li:hover {
+  cursor: pointer;
+  border-left: 0.75rem solid #fdb274;
+  transform: scale(1.03);
+}
+.infome {
+  display: inline-block;
+}
+.slider {
+  width: 36%;
+}
+.elinput >>> .el-input__inner {
+  border-color: rgb(255, 184, 126);
+  border-radius: 0.625rem 0rem 0rem 0.625rem;
+}
+.btn {
+  background-color: #fdb274;
+  border: none;
+  border-radius: 0rem 0.625rem 0.625rem 0rem;
+  outline: none;
+  cursor: pointer;
+}
+.btn img{
+  height: 1.5625rem;
+}
+.search {
+  margin: 3.125rem;
+  width: 30%;
+  display: flex;
+}
+.notice {
+  width: 80%;
+  height: 12.5rem;
+  margin: 1.875rem auto;
+  margin-left: 3.125rem;
+  box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
+}
+.noticeheader {
+  padding: 0.625rem 1.875rem;
+}
+.noticetitle {
+  border-bottom: 0.0313rem solid #e4e4e4;
+  padding-bottom: 0.625rem;
+}
+.noticeinfo {
+  line-height: 1.8em;
+  font-size: 0.875rem;
+}
+.noticeaddress {
+  background-color: rgb(246, 246, 246);
+  height: 5.75rem;
+  padding: 0.125rem 1.25rem;
+}
+.noticeaddress p {
+  font-size: 0.8125rem;
+}
+.noticeaddress img {
+  height: 1.25rem;
   border-radius: 50%;
 }
-.everyone {
-  display: inline-block;
-  margin-left: 30px;
-  line-height: 32px;
+.page{
+  margin-left: 7.5rem;
 }
-.everyonename {
-  font-size: 13px;
-  font-weight: bold;
+.page >>> .el-pager li.active{
+    color: rgb(255, 184, 126); 
 }
-.everyonebody {
-  font-size: 18px;
+.page >>> .el-pager li:hover{
+    color: rgb(255, 184, 126);
 }
-.ilike {
-  text-align: center;
+.page >>> .el-pagination .btn-next:hover{
+    color: rgb(255, 184, 126);
 }
-.footer-icon {
-  display: flex;
-  justify-content: center;
+.page >>> .el-pagination .btn-prev:hover{
+    color: rgb(255, 184, 126);
 }
-.footer-detail {
-  text-align: center;
+@media screen and (max-width: 500px){
+  .list{
+    margin-top: 255px
+  }
+  ul{
+    width: 95%;
+    margin-top: 0rem;
+    margin-left: -1.875rem;
+  }
+  .bloglist{
+    padding: 0.625rem 1.25rem 0;
+  }
+  li{
+    height: 4.25rem;
+    word-break: break-all;
+  }
+  .slider{
+    position: relative;
+    width: 100%;
+    order: -1
+  }
+  .search{
+    margin: -0.625rem 1.375rem 0;
+    width: 28%;
+  }
+  .elinput >>> .el-input__inner {
+  border-color: rgb(255, 184, 126);
+  border-radius: 0.625rem 0rem 0rem 0.625rem;
+  width: 16.25rem;
 }
-
-.elinput >>> .el-input__inner {
-  margin-bottom: 10px;
-  height: 30px;
-  width: 150px;
-  /* border-color: blueviolet */
-}
-.elinput >>> .el-input__inner:hover {
-  border-color: blueviolet;
-}
-.eltextarea >>> .el-textarea__inner {
-  height: 60px;
-  width: 220px;
-  margin-bottom: 10px;
-}
-.eltextarea >>> .el-textarea__inner:hover {
-  border-color: blueviolet;
-}
-.el-button {
-  height: 40px;
-}
-.el-button:hover {
-  color: blueviolet;
-  border-color: blueviolet;
-}
-.page >>> .el-pager li.active {
-  color: rgb(184, 93, 212);
-}
-.page >>> .el-pager li:hover {
-  color: rgb(184, 93, 212);
-}
-.page >>> .el-pagination .btn-next:hover {
-  color: rgb(184, 93, 212);
-}
-.page >>> .el-pagination .btn-prev:hover {
-  color: rgb(184, 93, 212);
+  .btn{
+    margin-left: 5rem;
+  }
+  .notice{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    margin-top: 1.25rem;
+    width: 98%;
+    height: 13.1875rem;
+    margin-left: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    order: 1;
+    
+  }
+  .noticeheader{
+    padding: 0 0.625rem;
+  }
+  .noticeaddress{
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+  li .time{
+    min-width: 20%;
+    font-size: 0.75rem;
+  }
+  li .title{
+      width: 60%;
+      font-size: 18px;
+      margin-left: 25px;
+      font-weight: bolder;
+  }
+  .noticeaddress p{
+    flex: 1
+  }
+  .notice a{
+  
+  }
+  .page{
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
 }
 </style>

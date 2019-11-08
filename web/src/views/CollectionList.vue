@@ -106,37 +106,37 @@ export default {
 .bloglist {
   display: flex;
   flex-wrap: wrap;
-  padding: 0px 40px 0;
+  padding: 0rem 2.5rem 0;
 }
 ul {
-  margin-top: 50px;
-  margin-left: 30px;
+  margin-top: 3.125rem;
+  margin-left: 1.875rem;
   width: 56%;
   display: inline-block;
 }
 li {
   list-style: none;
-  height: 95px;
+  height: 6.25rem;
   display: flex;
   align-items: center;
-  border: 1px solid white;
-  box-shadow: 5px 5px 20px #e4e3e3;
-  margin-bottom: 20px;
-  font-size: 19px;
-  border-left: 12px solid rgb(248, 162, 183);
+  border: 0.0625rem solid white;
+  box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
+  margin-bottom: 1.25rem;
+  font-size: 1.1875rem;
+  border-left: 0.75rem solid #ffe0c7;
   transition: 0.4s;
   line-height: 1.5em;
 }
 li .title {
-  margin-left: 50px;
+  margin-left: 3.125rem;
 }
 li .time {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   color: #575757;
 }
 li:hover {
   cursor: pointer;
-  border-left: 12px solid rgb(255, 126, 159);
+  border-left: 0.75rem solid #fdb274;
   transform: scale(1.03);
 }
 .infome {
@@ -145,65 +145,145 @@ li:hover {
 .slider {
   width: 36%;
 }
-.einput >>> .el-input__inner {
-  border-color: rgb(255, 126, 159);
-  border-radius: 10px 0px 0px 10px;
+.elinput >>> .el-input__inner {
+  border-color: rgb(255, 184, 126);
+  border-radius: 0.625rem 0rem 0rem 0.625rem;
 }
 .btn {
-  background-color: rgb(255, 126, 159);
+  background-color: #fdb274;
   border: none;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0rem 0.625rem 0.625rem 0rem;
   outline: none;
   cursor: pointer;
 }
+.btn img{
+  height: 1.5625rem;
+}
 .search {
-  margin: 50px;
+  margin: 3.125rem;
   width: 30%;
   display: flex;
 }
 .notice {
   width: 80%;
-  height: 42%;
-  margin: 30px auto;
-  margin-left: 50px;
-  box-shadow: 5px 5px 20px #e4e3e3;
+  height: 12.5rem;
+  margin: 1.875rem auto;
+  margin-left: 3.125rem;
+  box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
 }
 .noticeheader {
-  padding: 10px 30px;
+  padding: 0.625rem 1.875rem;
 }
 .noticetitle {
-  border-bottom: 0.5px solid #e4e4e4;
-  padding-bottom: 10px;
+  border-bottom: 0.0313rem solid #e4e4e4;
+  padding-bottom: 0.625rem;
 }
 .noticeinfo {
   line-height: 1.8em;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .noticeaddress {
   background-color: rgb(246, 246, 246);
-  height: 92px;
-  padding: 2px 20px;
+  height: 5.75rem;
+  padding: 0.125rem 1.25rem;
 }
 .noticeaddress p {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .noticeaddress img {
-  height: 20px;
+  height: 1.25rem;
   border-radius: 50%;
 }
-.page {
-  margin-left: 120px;
+.page{
+  margin-left: 7.5rem;
 }
-.page >>> .el-pager li.active {
-  color: rgb(255, 126, 159);
+.page >>> .el-pager li.active{
+    color: rgb(255, 184, 126); 
 }
-.page >>> .el-pager li:hover {
-  color: rgb(255, 126, 159);
+.page >>> .el-pager li:hover{
+    color: rgb(255, 184, 126);
 }
-.page >>> .el-pagination .btn-next:hover {
-  color: rgb(255, 126, 159);
+.page >>> .el-pagination .btn-next:hover{
+    color: rgb(255, 184, 126);
 }
-.page >>> .el-pagination .btn-prev:hover {
-  color: rgb(255, 126, 159);
+.page >>> .el-pagination .btn-prev:hover{
+    color: rgb(255, 184, 126);
+}
+@media screen and (max-width: 500px){
+  .list{
+    margin-top: 255px
+  }
+  ul{
+    width: 95%;
+    margin-top: 0rem;
+    margin-left: -1.875rem;
+  }
+  .bloglist{
+    padding: 0.625rem 1.25rem 0;
+  }
+  li{
+    height: 4.25rem;
+    word-break: break-all;
+  }
+  .slider{
+    position: relative;
+    width: 100%;
+    order: -1
+  }
+  .search{
+    margin: -0.625rem 1.375rem 0;
+    width: 28%;
+  }
+  .elinput >>> .el-input__inner {
+  border-color: rgb(255, 184, 126);
+  border-radius: 0.625rem 0rem 0rem 0.625rem;
+  width: 16.25rem;
+}
+  .btn{
+    margin-left: 5rem;
+  }
+  .notice{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    margin-top: 1.25rem;
+    width: 98%;
+    height: 13.1875rem;
+    margin-left: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    order: 1;
+    
+  }
+  .noticeheader{
+    padding: 0 0.625rem;
+  }
+  .noticeaddress{
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+  li .time{
+    min-width: 20%;
+    font-size: 0.75rem;
+  }
+  li .title{
+      width: 60%;
+      font-size: 18px;
+      margin-left: 25px;
+      font-weight: bolder;
+  }
+  .noticeaddress p{
+    flex: 1
+  }
+  .notice a{
+  
+  }
+  .page{
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
 }
 </style>

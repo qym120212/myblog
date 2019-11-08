@@ -232,24 +232,27 @@ li:hover {
   width: 16.25rem;
 }
   .btn{
-    margin-left: 4.6875rem;
-    height: 2.5rem;
+    margin-left: 5rem;
   }
   .notice{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: absolute;
     margin-top: 1.25rem;
     width: 98%;
-    /* min-height: 18.75rem; */
+    height: 13.1875rem;
     margin-left: 0;
     left: 50%;
     transform: translate(-50%,0);
-    order: 1
+    order: 1;
+    
   }
   .noticeheader{
-    padding: 0 0.625rem
+    padding: 0 0.625rem;
   }
   .noticeaddress{
-    height: 2.25rem;
+    height: 36px;
     display: flex;
     align-items: center;
   }
