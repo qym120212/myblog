@@ -86,7 +86,7 @@ a:hover {
   border-bottom: solid rgb(184, 93, 212) 0.1875rem;
 }
 .container{
-  height: 93.75rem;
+  min-height: 93.75rem;
 }
 .footer{
   height: 4.375rem;

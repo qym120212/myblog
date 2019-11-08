@@ -30,6 +30,7 @@
         <div class="footer-detail">{{ this.model.likecount }}人觉得还不错</div>
       </div>
     </div>
+     <vue-editor class="editor"></vue-editor>
     <div class="articlecomment">
       <div class="commentlist">
         <div v-for="(item,index) in model.comments" :key="index" class="allinfo">
@@ -56,10 +57,14 @@
 <script>
 import vueClapButton from "vue-clap-button";
 import Vue from "vue";
+import { VueEditor } from "vue2-editor";
 Vue.use(vueClapButton);
 export default {
   props: {
     id: {} //这样可以更好的跟路由解耦，不需要再写this.router.params.id这种写法
+  },
+  components: {
+    VueEditor
   },
   data() {
     return {
@@ -216,6 +221,9 @@ export default {
 }
 .everyonebody {
   font-size: 18px;
+}
+.editor{
+  display: none;
 }
 .ilike {
   text-align: center;
