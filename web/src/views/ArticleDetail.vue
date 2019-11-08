@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <div class="articledetail" v-html="this.model.body">{{ this.model.body }}</div>
+      <div class="articledetail ql-editor" v-html="this.model.body">{{ this.model.body }}</div>
       <div>
         <div class="footer-icon" v-on:click="iLike()">
           <vue-clap-button :clicked="isClicked" @click="iLike" :colorNormal="likeColor" />
@@ -223,7 +223,7 @@ export default {
   font-size: 18px;
 }
 .editor{
-  
+  display: none;
 }
 .ilike {
   text-align: center;
