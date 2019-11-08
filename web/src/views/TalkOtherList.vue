@@ -237,6 +237,7 @@ li:hover {
 }
   .btn{
     margin-left: 5rem;
+    height: 2.5rem;
   }
   .notice{
     display: flex;
