@@ -243,6 +243,8 @@ li:hover {
   .btn{
     margin-left: 5rem;
     height: 2.5rem;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+   -webkit-tap-highlight-color: transparent;
   }
   .notice{
     display: flex;
