@@ -137,7 +137,7 @@ li .time {
 }
 li:hover {
   cursor: pointer;
-  border-left: 0.75rem solid #fdb274;
+  border-left: 0.75rem solid rgb(17, 118, 235);;
   transform: scale(1.03);
 }
 .infome {
@@ -151,7 +151,7 @@ li:hover {
   border-radius: 0.625rem 0rem 0rem 0.625rem;
 }
 .btn {
-  background-color: #fdb274;
+  background-color: rgb(17, 118, 235);;
   border: none;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
   outline: none;
