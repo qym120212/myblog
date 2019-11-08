@@ -206,4 +206,77 @@ li:hover {
 .page >>> .el-pagination .btn-prev:hover {
   color: rgb(17, 118, 235);
 }
+@media screen and (max-width: 500px){
+  .list{
+    margin-top: 255px
+  }
+  ul{
+    width: 95%;
+    margin-top: 0rem;
+    margin-left: -1.875rem;
+  }
+  .bloglist{
+    padding: 0.625rem 1.25rem 0;
+  }
+  li{
+    height: 4.25rem;
+    word-break: break-all;
+  }
+  .slider{
+    position: relative;
+    width: 100%;
+    order: -1
+  }
+  .search{
+    margin: -0.625rem 1.375rem 0;
+    width: 28%;
+  }
+  .einput >>> .el-input__inner {
+  border-radius: 0.625rem 0rem 0rem 0.625rem;
+  width: 16.25rem;
+}
+  .btn{
+    margin-left: 5rem;
+  }
+  .notice{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    margin-top: 1.25rem;
+    width: 98%;
+    height: 13.1875rem;
+    margin-left: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    order: 1;
+    
+  }
+  .noticeheader{
+    padding: 0 0.625rem;
+  }
+  .noticeaddress{
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+  li .time{
+    min-width: 20%;
+    font-size: 0.75rem;
+  }
+  li .title{
+      width: 60%;
+      font-size: 18px;
+      margin-left: 25px;
+      font-weight: bolder;
+  }
+  .noticeaddress p{
+    flex: 1
+  }
+  .page{
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
 </style>
