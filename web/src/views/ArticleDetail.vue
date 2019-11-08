@@ -223,7 +223,7 @@ export default {
   font-size: 18px;
 }
 .editor{
-  display: none;
+  
 }
 .ilike {
   text-align: center;
