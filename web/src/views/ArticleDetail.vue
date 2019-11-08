@@ -43,17 +43,11 @@
         </div>
       </div>
       <hr />
-      <div>
+      <div class="inputarea">
         <el-form label-width="120px" @submit.native.prevent="touristsubmit()">
-          <el-form-item label="您的昵称">
-            <el-input v-model="tourist.name"></el-input>
-          </el-form-item>
-          <el-form-item label="请输入评论内容">
-            <el-input v-model="tourist.body"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" native-type="submit" :loading="loading">{{ this.btn }}</el-button>
-          </el-form-item>
+              <el-input v-model="tourist.name" placeholder="您的昵称" class="elinput"></el-input>
+            <el-input v-model="tourist.body" placeholder="请输入评论内容" class="elinput1"></el-input>
+            <el-button  native-type="submit" :loading="loading" class="elbtn">{{ this.btn }}</el-button>
         </el-form>
       </div>
     </div>
@@ -75,13 +69,13 @@ export default {
       commentsLength: 0,
       isClicked: false,
       likeColor: "#909399",
-        loading: false,
-      btn:'提交评论'
+      loading: false,
+      btn: "提交"
     };
   },
   methods: {
     async fetch() {
-        this.limit()
+      this.limit();
       const res = await this.$http.get(`articles/${this.id}`);
       this.model = res.data;
       var d = new Date(this.model.date);
@@ -110,7 +104,6 @@ export default {
       }
       localStorage.setItem("key", JSON.stringify(commentstorage));
       if (commentstorage.length > 3) {
-     
         this.loading = true;
         this.btn = "过会再评论吧~~";
         setTimeout(() => {
@@ -132,7 +125,7 @@ export default {
         type: "success",
         message: "发表成功"
       });
-    this.limit(this.tourist.body)
+      this.limit(this.tourist.body);
     },
     async iLike() {
       const articleId = this.model._id;
@@ -179,6 +172,7 @@ export default {
 }
 .articleheader {
   text-align: center;
+  word-break: break-all;
 }
 .articletitle {
   margin-bottom: 10px;
@@ -232,5 +226,66 @@ export default {
 }
 .footer-detail {
   text-align: center;
+}
+@media screen and (max-width: 500px) {
+  .main {
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .articlecontainer {
+    width: 90%;
+    padding: 0;
+    margin-top: 0;
+  }
+  .articleheader .articletitle {
+    margin-top: 0.625rem;
+    font-size: 26px;
+  }
+  .articleheader .articleinfo {
+    width: 50%;
+  }
+  .articledetail {
+    padding: 10px;
+  }
+  .footer-detail {
+    margin-bottom: 1.25rem;
+  }
+  .articlecomment {
+    width: 90%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .allinfo {
+    margin-bottom: 0;
+  }
+  .allinfo img {
+    width: 40px;
+    padding: 10px;
+  }
+  .everyone {
+    margin-left: 20px;
+  }
+  .everyonebody {
+    text-indent: 2em;
+  }
+  .inputarea{
+    padding-left: 5px;
+    margin-bottom: 10px;
+  }
+  .elinput >>> .el-input__inner{
+     /* border-color: rgb(255, 184, 126); */
+     width: 50%;
+     margin-bottom: 5px;
+  }
+  .elinput1 >>> .el-input__inner{
+     /* border-color: rgb(255, 184, 126); */
+     width: 90%;
+     margin-bottom: 0.625rem;
+  }
 }
 </style>
