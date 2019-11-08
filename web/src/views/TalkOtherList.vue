@@ -9,7 +9,7 @@
       </ul>
       <div class="slider">
         <div class="search">
-          <el-input placeholder="请输入关键词搜索" class="einput" v-model="keywords"></el-input>
+          <el-input placeholder="请输入关键词搜索" class="elinput" v-model="keywords"></el-input>
           <button class="btn" @click="search(keywords)">
             <img src="../assets/search.png" alt height="25px" class="btn" />
           </button>
@@ -235,7 +235,7 @@ li:hover {
     margin: -0.625rem 1.375rem 0;
     width: 28%;
   }
-  .einput >>> .el-input__inner {
+  .elinput >>> .el-input__inner {
   border-color: rgb(17, 118, 235);
   border-radius: 0.625rem 0rem 0rem 0.625rem;
   width: 16.25rem;
