@@ -83,9 +83,6 @@ export default {
       this.limit()
       const res = await this.$http.get(`talkothers/${this.id}`);
       this.model = res.data;
-      var d = new Date(this.model.date);
-      this.model.date =
-        d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       this.commentsLength = this.model.comments.length;
       var likeList = JSON.parse(localStorage.getItem("likeList"));
       if (!likeList) return;

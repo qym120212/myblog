@@ -61,11 +61,6 @@ export default {
     async fetch() {
       const res = await this.$http.get("articles");
       this.items = res.data.reverse()
-      this.items.map(item => {
-        let d = new Date(item.date);
-        item.date =
-          d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-      });
       this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
     },
     articledetail(id) {
