@@ -30,7 +30,6 @@
         <div class="footer-detail">{{ this.model.likecount }}人觉得还不错</div>
       </div>
     </div>
-    <vue-editor class="editor"></vue-editor>
     <div class="articlecomment">
       <div class="commentlist">
         <div v-for="(item,index) in model.comments" :key="index" class="allinfo">
@@ -44,11 +43,17 @@
         </div>
       </div>
       <hr />
-      <div class="inputarea">
+      <div>
         <el-form label-width="120px" @submit.native.prevent="touristsubmit()">
-              <el-input v-model="tourist.name" placeholder="您的昵称" class="elinput"></el-input>
-            <el-input v-model="tourist.body" placeholder="请输入评论内容" class="elinput1"></el-input>
-            <el-button  native-type="submit" :loading="loading" class="elbtn">{{ this.btn }}</el-button>
+          <el-form-item label="您的昵称">
+            <el-input v-model="tourist.name"></el-input>
+          </el-form-item>
+          <el-form-item label="请输入评论内容">
+            <el-input v-model="tourist.body"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button id="btn" type="primary" native-type="submit" :loading="loading">{{ this.btn }}</el-button>
+          </el-form-item>
         </el-form>
       </div>
     </div>
@@ -57,14 +62,10 @@
 <script>
 import vueClapButton from "vue-clap-button";
 import Vue from "vue";
-import { VueEditor } from "vue2-editor";
 Vue.use(vueClapButton);
 export default {
   props: {
     id: {} //这样可以更好的跟路由解耦，不需要再写this.router.params.id这种写法
-  },
-  components: {
-    VueEditor
   },
   data() {
     return {
@@ -83,6 +84,9 @@ export default {
       this.limit()
       const res = await this.$http.get(`talkothers/${this.id}`);
       this.model = res.data;
+      var d = new Date(this.model.date);
+      this.model.date =
+        d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       this.commentsLength = this.model.comments.length;
       var likeList = JSON.parse(localStorage.getItem("likeList"));
       if (!likeList) return;
@@ -175,7 +179,6 @@ export default {
 }
 .articleheader {
   text-align: center;
-  word-break: break-all;
 }
 .articletitle {
   margin-bottom: 10px;
@@ -220,9 +223,6 @@ export default {
 .everyonebody {
   font-size: 18px;
 }
-.editor{
-  display: none;
-}
 .ilike {
   text-align: center;
 }
@@ -232,66 +232,5 @@ export default {
 }
 .footer-detail {
   text-align: center;
-}
-@media screen and (max-width: 500px) {
-  .main {
-    width: 100%;
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .articlecontainer {
-    width: 90%;
-    padding: 0;
-    margin-top: 0;
-  }
-  .articleheader .articletitle {
-    margin-top: 0.625rem;
-    font-size: 26px;
-  }
-  .articleheader .articleinfo {
-    width: 50%;
-  }
-  .articledetail {
-    padding: 10px;
-  }
-  .footer-detail {
-    margin-bottom: 1.25rem;
-  }
-  .articlecomment {
-    width: 90%;
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .allinfo {
-    margin-bottom: 0;
-  }
-  .allinfo img {
-    width: 40px;
-    padding: 10px;
-  }
-  .everyone {
-    margin-left: 20px;
-  }
-  .everyonebody {
-    text-indent: 2em;
-  }
-  .inputarea{
-    padding-left: 5px;
-    margin-bottom: 10px;
-  }
-  .elinput >>> .el-input__inner{
-     /* border-color: rgb(255, 184, 126); */
-     width: 50%;
-     margin-bottom: 5px;
-  }
-  .elinput1 >>> .el-input__inner{
-     /* border-color: rgb(255, 184, 126); */
-     width: 90%;
-     margin-bottom: 0.625rem;
-  }
 }
 </style>

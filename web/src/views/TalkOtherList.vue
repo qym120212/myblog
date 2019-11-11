@@ -9,9 +9,9 @@
       </ul>
       <div class="slider">
         <div class="search">
-          <el-input placeholder="请输入关键词搜索" class="elinput" v-model="keywords"></el-input>
-          <button class="btn" @click="search(keywords)">
-            <img src="../assets/search.png" alt height="25px" class="btn" />
+           <input type="text" placeholder="请输入关键词搜索" class="elinput" v-model="keywords" />
+          <button class="btn" @click="search(keywords)"> 
+            <img src="../assets/search.png" />
           </button>
         </div>
         <div class="notice">
@@ -60,6 +60,11 @@ export default {
     async fetch() {
       const res = await this.$http.get("talkothers");
       this.items = res.data.reverse();
+      this.items.map(item => {
+        let d = new Date(item.date);
+        item.date =
+          d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      });
       this.arr = this.items.slice(
         (this.currentPage - 1) * this.pageSize,
         this.currentPage * this.pageSize
@@ -97,18 +102,21 @@ export default {
   }
 };
 </script>
-</script>
 <style scoped>
 .bloglist {
   display: flex;
   flex-wrap: wrap;
-  padding: 0rem 2.5rem 0;
+  padding: 2.4375rem 2.5rem 0;
+}
+*{
+  margin: 0;
+  padding: 0;
 }
 ul {
-  margin-top: 3.125rem;
   margin-left: 1.875rem;
   width: 56%;
   display: inline-block;
+  padding: 0;
 }
 li {
   list-style: none;
@@ -119,7 +127,7 @@ li {
   box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
   margin-bottom: 1.25rem;
   font-size: 1.1875rem;
-  border-left: 0.75rem solid rgb(113, 174, 248);
+  border-left: 0.75rem solid rgb(113,174,248);;
   transition: 0.4s;
   line-height: 1.5em;
 }
@@ -132,7 +140,7 @@ li .time {
 }
 li:hover {
   cursor: pointer;
-  border-left: 0.75rem solid rgb(17, 118, 235);;
+  border-left: 0.75rem solid rgb(17,118,235);;
   transform: scale(1.03);
 }
 .infome {
@@ -140,31 +148,42 @@ li:hover {
 }
 .slider {
   width: 36%;
+  padding-left: 5rem;
 }
-.elinput >>> .el-input__inner {
-  border-color: rgb(17, 118, 235);
-  border-radius: 0.625rem 0rem 0rem 0.625rem;
+.elinput:focus{
+    border-color: rgb(17,118,235);;
+}
+.elinput{
+  box-sizing: border-box;
+    border: 2px solid rgb(113,174,248);;
+    border-right: transparent;
+    border-radius: 0.625rem 0rem 0rem 0.625rem;
+    outline: none;
+    text-indent: 1em;
+    height: 100%;
+    width: 50%;
 }
 .btn {
-  background-color: rgb(17, 118, 235);;
-  border: none;
-  border-radius: 0rem 0.625rem 0.625rem 0rem;
-  outline: none;
-  cursor: pointer;
+    box-sizing: border-box;
+  background-color: rgb(17,118,235);;
+  vertical-align: top;
+    margin-left: -6px;
+    height: 100%;
+    width: 40px;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    cursor: pointer;
 }
 .btn img{
-  height: 1.5625rem;
+  width: 60%;
 }
 .search {
-  margin: 3.125rem;
-  width: 30%;
-  display: flex;
+  height: 40px;
 }
 .notice {
   width: 80%;
   height: 12.5rem;
-  margin: 1.875rem auto;
-  margin-left: 3.125rem;
+  margin-top: 1.875rem;
   box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
 }
 .noticeheader {
@@ -181,7 +200,7 @@ li:hover {
 .noticeaddress {
   background-color: rgb(246, 246, 246);
   height: 5.75rem;
-  padding: 0.125rem 1.25rem;
+  padding: 2px 1.9375rem;
 }
 .noticeaddress p {
   font-size: 0.8125rem;
@@ -194,66 +213,66 @@ li:hover {
   margin-left: 7.5rem;
 }
 .page >>> .el-pager li.active{
-    color: rgb(17, 118, 235); 
+    color: rgb(113,174,248); 
 }
 .page >>> .el-pager li:hover{
-    color: rgb(17, 118, 235);
+    color: rgb(113,174,248);
 }
 .page >>> .el-pagination .btn-next:hover{
-    color: rgb(17, 118, 235);
+    color: rgb(113,174,248);
 }
 .page >>> .el-pagination .btn-prev:hover{
-    color: rgb(17, 118, 235);
+    color: rgb(113,174,248);
 }
 @media screen and (max-width: 500px){
   .list{
     margin-top: 255px
   }
   ul{
+    margin-left: 10px;
     width: 95%;
     margin-top: 0rem;
-    margin-left: -1.875rem;
   }
   .bloglist{
-    padding: 0.625rem 1.25rem 0;
+    padding: 10px 20px 0;
   }
   li{
     height: 4.25rem;
     word-break: break-all;
   }
   .slider{
-    position: relative;
     width: 100%;
-    order: -1
+    order: -1;
+    padding: 0; 
   }
   .search{
-    margin: -0.625rem 1.375rem 0;
-    width: 28%;
+    width: 100%;
+    text-align: center;
   }
-  .elinput >>> .el-input__inner {
-  border-color: rgb(17, 118, 235);
+  .elinput {
+  border-color: rgb(113,174,248);
   border-radius: 0.625rem 0rem 0rem 0.625rem;
-  width: 16.25rem;
+  width: 70%;
 }
-  .btn{
-    margin-left: 5rem;
-    height: 2.5rem;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
-   -webkit-tap-highlight-color: transparent;
-  }
+
   .notice{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
     margin-top: 1.25rem;
-    width: 98%;
-    height: 13.1875rem;
+    width: 90%;
     margin-left: 0;
     left: 50%;
     transform: translate(-50%,0);
-    order: 1;
-    
+  }
+  .noticetitle{
+    text-align: center;
+  }
+  .noticeinfo{
+    text-align: center;
+    font-size: 13px;
+    margin-top: 0.9375rem;
   }
   .noticeheader{
     padding: 0 0.625rem;
@@ -261,7 +280,7 @@ li:hover {
   .noticeaddress{
     height: 36px;
     display: flex;
-    align-items: center;
+    padding: 0.5625rem 0.9375rem 0px 0.75rem
   }
   li .time{
     min-width: 20%;

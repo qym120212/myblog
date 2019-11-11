@@ -29,8 +29,8 @@
         </div>
         <div class="footer-detail">{{ this.model.likecount }}人觉得还不错</div>
       </div>
+      <vue-editor class="editor"></vue-editor>
     </div>
-     <vue-editor class="editor"></vue-editor>
     <div class="articlecomment">
       <div class="commentlist">
         <div v-for="(item,index) in model.comments" :key="index" class="allinfo">
@@ -157,7 +157,7 @@ export default {
   },
   created() {
     this.fetch();
-  }
+  },
 };
 </script>
 <style scoped>
@@ -219,11 +219,17 @@ export default {
 .everyonebody {
   font-size: 18px;
 }
+.ilike {
+  text-align: center;
+}
 .editor{
   display: none;
 }
-.ilike {
-  text-align: center;
+.ql-editor{
+  max-width: 70%;
+}
+.ql-editor .ql-align-center{
+  background-color: red;
 }
 .footer-icon {
   display: flex;

@@ -18,9 +18,9 @@
     </div>
     <div class="footer">
       <div class="webdetail">
-        <div>ICP备案：等审批</div>
+        <div>ICP备案：苏ICP备19034670号-1</div>
       <div><img src="../assets/beian.png" alt="">
-        等审批</div><a href=""></a>
+        苏公网安备 32058102001549号</div><a href=""></a>
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@ a:hover {
   border-bottom: solid rgb(184, 93, 212) 0.1875rem;
 }
 .container{
-  min-height: 93.75rem;
+  height: 93.75rem;
 }
 .footer{
   height: 4.375rem;
