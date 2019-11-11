@@ -2,11 +2,11 @@
   <div class="about">
     <h1>列表页</h1>
       <el-table :data="items.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))">
-        <el-table-column prop="time" label="创建时间" width="240"></el-table-column>
+        <el-table-column prop="thetime" label="创建时间" width="240"></el-table-column>
         <el-table-column prop="title" label="文章标题"></el-table-column>
             <el-table-column
       align="right">
-      <template slot="header" slot-scope="scope">
+      <template slot="header">
         <el-input
           v-model="search"
           size="mini"

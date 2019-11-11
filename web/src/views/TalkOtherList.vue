@@ -3,7 +3,7 @@
     <div class="bloglist">
       <ul class="list">
         <li v-for="item in arr" :key="item._id" @click="articledetail(item._id)">
-          <span class="time">{{ item.time }}</span>
+          <span class="time">{{ item.thetime }}</span>
           <div class="title">{{ item.title }}</div>
         </li>
       </ul>
