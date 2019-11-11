@@ -6,7 +6,7 @@
             <el-input v-model="model.title"></el-input>
         </el-form-item>
         <el-form-item label="时间">
-        <el-input v-model="model.thetime"></el-input>
+        <el-input v-model="model.date"></el-input>
       </el-form-item>
         <el-form-item label="外链">
             <el-input v-model="model.link"></el-input>

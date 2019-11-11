@@ -2,7 +2,7 @@
   <div class="about">
     <h1>列表页</h1>
       <el-table :data="((items.filter(data=>!search||data.title.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pageSize,currentPage*pageSize)))">
-        <el-table-column prop="thetime" label="创建的时间" width="240"></el-table-column>
+        <el-table-column prop="date" label="创建的时间" width="240"></el-table-column>
         <el-table-column prop="title" label="文章标题"></el-table-column>
             <el-table-column
       align="right">

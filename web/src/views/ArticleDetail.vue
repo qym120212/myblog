@@ -6,7 +6,7 @@
         <div class="articleinfo">
           <div class="date">
             <i class="el-icon-date"></i>
-            <span>{{ this.model.thetime }}</span>
+            <span>{{ this.model.date }}</span>
           </div>
           <div class="view">
             <i class="el-icon-view"></i>
