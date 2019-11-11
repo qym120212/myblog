@@ -57,6 +57,7 @@ export default {
         type: "success",
         message: "保存成功"
       });
+      console.log(this.model);
     },
     async saveComments(){
       let res;
