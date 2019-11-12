@@ -60,11 +60,6 @@ export default {
     async fetch() {
       const res = await this.$http.get("collections");
       this.items = res.data.reverse();
-      this.items.map(item => {
-        let d = new Date(item.date);
-        item.date =
-          d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-      });
       this.arr = this.items.slice(
         (this.currentPage - 1) * this.pageSize,
         this.currentPage * this.pageSize
@@ -204,6 +199,7 @@ li:hover {
 }
 .noticeaddress p {
   font-size: 0.8125rem;
+    margin: 0.75rem 0 1.25rem 0;
 }
 .noticeaddress img {
   height: 1.25rem;
@@ -280,7 +276,8 @@ li:hover {
   .noticeaddress{
     height: 36px;
     display: flex;
-    padding: 0.5625rem 0.9375rem 0px 0.75rem
+    padding: 0.5625rem 0.9375rem 0px 0.75rem;
+    align-items: center;
   }
   li .time{
     min-width: 20%;

@@ -47,10 +47,7 @@ export default {
     async fetch(){
       const res =await this.$http.get('articles')
       this.items = res.data
-       this.items.map( (item)=>{
-                let d = new Date(item.date);  
-                item.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-            } )
+      this.items = this.items.reverse()
     },
     async remove(row){
           this.$confirm(`此操作将永久删除文章《${row.title}》, 是否继续?`, '提示', {

@@ -2,6 +2,7 @@
   <div class="about">
     <h1>列表页</h1>
       <el-table :data="((items.filter(data=>!search||data.title.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pageSize,currentPage*pageSize)))">
+        <el-table-column prop="date" label="创建时间" width="300"></el-table-column>
         <el-table-column prop="title" label="标题名称"></el-table-column>
          <el-table-column prop="link" label="链接"></el-table-column>
          <el-table-column fixed="right">
@@ -42,6 +43,7 @@ export default {
     async fetch(){
       const res =await this.$http.get('collections')
       this.items = res.data
+      this.items = this.items.reverse()
     },
     async remove(row){
           this.$confirm(`此操作将永久删除分类${row.name}, 是否继续?`, '提示', {

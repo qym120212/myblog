@@ -60,11 +60,6 @@ export default {
     async fetch() {
       const res = await this.$http.get("talkothers");
       this.items = res.data.reverse();
-      this.items.map(item => {
-        let d = new Date(item.date);
-        item.date =
-          d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-      });
       this.arr = this.items.slice(
         (this.currentPage - 1) * this.pageSize,
         this.currentPage * this.pageSize
@@ -127,7 +122,7 @@ li {
   box-shadow: 0.3125rem 0.3125rem 1.25rem #e4e3e3;
   margin-bottom: 1.25rem;
   font-size: 1.1875rem;
-  border-left: 0.75rem solid rgb(113,174,248);;
+  border-left: 0.75rem solid rgb(113,174,248);
   transition: 0.4s;
   line-height: 1.5em;
 }
@@ -140,7 +135,7 @@ li .time {
 }
 li:hover {
   cursor: pointer;
-  border-left: 0.75rem solid rgb(17,118,235);;
+  border-left: 0.75rem solid rgb(17,118,235);
   transform: scale(1.03);
 }
 .infome {
@@ -151,11 +146,11 @@ li:hover {
   padding-left: 5rem;
 }
 .elinput:focus{
-    border-color: rgb(17,118,235);;
+    border-color: rgb(17,118,235);
 }
 .elinput{
   box-sizing: border-box;
-    border: 2px solid rgb(113,174,248);;
+    border: 2px solid rgb(113,174,248);
     border-right: transparent;
     border-radius: 0.625rem 0rem 0rem 0.625rem;
     outline: none;
@@ -165,7 +160,7 @@ li:hover {
 }
 .btn {
     box-sizing: border-box;
-  background-color: rgb(17,118,235);;
+  background-color: rgb(17,118,235);
   vertical-align: top;
     margin-left: -6px;
     height: 100%;
@@ -204,6 +199,7 @@ li:hover {
 }
 .noticeaddress p {
   font-size: 0.8125rem;
+  margin: 0.75rem 0 1.25rem 0;
 }
 .noticeaddress img {
   height: 1.25rem;
@@ -213,16 +209,16 @@ li:hover {
   margin-left: 7.5rem;
 }
 .page >>> .el-pager li.active{
-    color: rgb(113,174,248); 
+    color: rgb(17,118,235); 
 }
 .page >>> .el-pager li:hover{
-    color: rgb(113,174,248);
+    color: rgb(17,118,235);
 }
 .page >>> .el-pagination .btn-next:hover{
-    color: rgb(113,174,248);
+    color: rgb(17,118,235);
 }
 .page >>> .el-pagination .btn-prev:hover{
-    color: rgb(113,174,248);
+    color: rgb(17,118,235);
 }
 @media screen and (max-width: 500px){
   .list{
@@ -250,7 +246,7 @@ li:hover {
     text-align: center;
   }
   .elinput {
-  border-color: rgb(113,174,248);
+  border-color: rgb(17,118,235);
   border-radius: 0.625rem 0rem 0rem 0.625rem;
   width: 70%;
 }
@@ -272,7 +268,7 @@ li:hover {
   .noticeinfo{
     text-align: center;
     font-size: 13px;
-    margin-top: 0.9375rem;
+    margin-top: 10px;
   }
   .noticeheader{
     padding: 0 0.625rem;
@@ -280,6 +276,7 @@ li:hover {
   .noticeaddress{
     height: 36px;
     display: flex;
+    align-items: center;
     padding: 0.5625rem 0.9375rem 0px 0.75rem
   }
   li .time{
