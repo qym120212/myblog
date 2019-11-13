@@ -168,7 +168,6 @@ li:hover {
     border-radius: 0 5px 5px 0;
     border: none;
     cursor: pointer;
-    margin-top: 4px;
 }
 .btn img{
   width: 60%;
