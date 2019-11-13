@@ -165,7 +165,7 @@ export default {
   padding: 10px 70px 0;
 }
 .articlecontainer {
-  width: 900px;
+  width: 70%;
   margin: auto;
   padding: 30px 40px 35px;
   box-shadow: 5px 5px 20px #e4e3e3;
@@ -260,9 +260,9 @@ export default {
   .articledetail {
     padding: 10px;
   }
-  .ql-editor{
+  /* .ql-editor{
     font-size: 14px;
-  }
+  } */
   .footer-detail {
     margin-bottom: 1.25rem;
   }
