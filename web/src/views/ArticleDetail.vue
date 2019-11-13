@@ -226,7 +226,8 @@ export default {
   display: none;
 }
 .ql-editor{
-  max-width: 70%;
+  max-width: 90%;
+  margin: auto;
 }
 .ql-editor .ql-align-center{
   background-color: red;
