@@ -165,7 +165,7 @@ export default {
   padding: 10px 70px 0;
 }
 .articlecontainer {
-  width: 70%;
+  width: 900px;
   margin: auto;
   padding: 30px 40px 35px;
   box-shadow: 5px 5px 20px #e4e3e3;
@@ -226,8 +226,10 @@ export default {
   display: none;
 }
 .ql-editor{
-  max-width: 90%;
-  margin: auto;
+  max-width: 70%;
+}
+.ql-editor .ql-align-center{
+  background-color: red;
 }
 .footer-icon {
   display: flex;
@@ -248,11 +250,10 @@ export default {
     width: 90%;
     padding: 0;
     margin-top: 0;
-    margin-bottom: ;
   }
   .articleheader .articletitle {
-    margin-top: 1.125rem;
-    font-size: 20px;
+    margin-top: 0.625rem;
+    font-size: 26px;
   }
   .articleheader .articleinfo {
     width: 50%;
@@ -260,9 +261,6 @@ export default {
   .articledetail {
     padding: 10px;
   }
-  /* .ql-editor{
-    font-size: 14px;
-  } */
   .footer-detail {
     margin-bottom: 1.25rem;
   }
