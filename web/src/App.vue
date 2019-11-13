@@ -17,6 +17,9 @@ body {
   min-width: 800px;
 }
 @media screen and (max-width: 500px) {
+  body,html{
+    font-size: 14px;
+  }
   #app {
     min-width: 0;
     font-size: 12px;
