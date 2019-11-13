@@ -229,9 +229,6 @@ export default {
   max-width: 90%;
   margin: auto;
 }
-.ql-editor .ql-align-center{
-  background-color: red;
-}
 .footer-icon {
   display: flex;
   justify-content: center;
@@ -251,16 +248,20 @@ export default {
     width: 90%;
     padding: 0;
     margin-top: 0;
+    margin-bottom: ;
   }
   .articleheader .articletitle {
-    margin-top: 0.625rem;
-    font-size: 26px;
+    margin-top: 1.125rem;
+    font-size: 20px;
   }
   .articleheader .articleinfo {
     width: 50%;
   }
   .articledetail {
     padding: 10px;
+  }
+  .ql-editor{
+    font-size: 14px;
   }
   .footer-detail {
     margin-bottom: 1.25rem;

@@ -179,6 +179,7 @@ export default {
 }
 .articleheader {
   text-align: center;
+  word-break: break-all;
 }
 .articletitle {
   margin-bottom: 10px;
@@ -226,11 +227,83 @@ export default {
 .ilike {
   text-align: center;
 }
+.editor{
+  display: none;
+}
+.ql-editor{
+  max-width: 90%;
+  margin: auto;
+}
 .footer-icon {
   display: flex;
   justify-content: center;
 }
 .footer-detail {
   text-align: center;
+}
+@media screen and (max-width: 500px) {
+  .main {
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .articlecontainer {
+    width: 90%;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: ;
+  }
+  .articleheader .articletitle {
+    margin-top: 1.125rem;
+    font-size: 20px;
+  }
+  .articleheader .articleinfo {
+    width: 50%;
+  }
+  .articledetail {
+    padding: 10px;
+  }
+  .ql-editor{
+    font-size: 14px;
+  }
+  .footer-detail {
+    margin-bottom: 1.25rem;
+  }
+  .articlecomment {
+    width: 90%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .allinfo {
+    margin-bottom: 0;
+  }
+  .allinfo img {
+    width: 40px;
+    padding: 10px;
+  }
+  .everyone {
+    margin-left: 20px;
+  }
+  .everyonebody {
+    text-indent: 2em;
+  }
+  .inputarea{
+    padding-left: 5px;
+    margin-bottom: 10px;
+  }
+  .elinput >>> .el-input__inner{
+     /* border-color: rgb(255, 184, 126); */
+     width: 50%;
+     margin-bottom: 5px;
+  }
+  .elinput1 >>> .el-input__inner{
+     /* border-color: rgb(255, 184, 126); */
+     width: 90%;
+     margin-bottom: 0.625rem;
+  }
 }
 </style>
