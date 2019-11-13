@@ -162,6 +162,7 @@ li:hover {
     border-radius: 0 5px 5px 0;
     border: none;
     cursor: pointer;
+    margin-top: 4px;
 }
 .btn img{
   width: 60%;
@@ -215,6 +216,9 @@ li:hover {
     color: rgb(255, 184, 126);
 }
 @media screen and (max-width: 500px){
+  .btn{
+    margin-top: 0;
+  }
   .list{
     margin-top: 255px
   }
