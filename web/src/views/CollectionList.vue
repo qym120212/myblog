@@ -59,11 +59,21 @@ export default {
   methods: {
     async fetch() {
       const res = await this.$http.get("collections");
-      this.items = res.data.reverse();
-      this.arr = this.items.slice(
-        (this.currentPage - 1) * this.pageSize,
-        this.currentPage * this.pageSize
-      );
+      this.items = res.data
+      this.items = this.items.reverse().sort(this.compare('date'))
+      this.items.forEach((item)=>{
+        let str = item.date
+        str = str.slice(0,4) + '-' + str.slice(4,6) + '-' + str.slice(6)
+        item.date = str
+      })
+      this.arr = this.items.slice((this.currentPage-1)*this.pageSize,this.currentPage*this.pageSize)
+    },
+    compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+      }
     },
     collectionlink(link) {
       window.open(link);

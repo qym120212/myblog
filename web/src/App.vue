@@ -36,6 +36,6 @@ position: absolute;
 
 body {
 width: 100vw;
-overflow: hidden;
+/* overflow: hidden; */
 }
 </style>

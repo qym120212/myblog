@@ -43,7 +43,19 @@ export default {
     async fetch(){
       const res =await this.$http.get('collections')
       this.items = res.data
-      this.items = this.items.reverse()
+      this.items = this.items.reverse().sort(this.compare('date'))
+      this.items.forEach((item)=>{
+        let str = item.date
+        str = str.slice(0,4) + '-' + str.slice(4,6) + '-' + str.slice(6)
+        item.date = str
+      })
+    },
+    compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+      }
     },
     async remove(row){
           this.$confirm(`此操作将永久删除分类${row.name}, 是否继续?`, '提示', {
