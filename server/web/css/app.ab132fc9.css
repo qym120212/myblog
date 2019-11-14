@@ -1,4 +1,4 @@
-body,html{margin:0;padding:0;font-size:16px}#app{min-width:800px}@media screen and (max-width:500px){#app{min-width:0;font-size:12px}}html{overflow-y:scroll}:root{overflow-y:auto;overflow-x:hidden}:root body{position:absolute}body{width:100vw;overflow:hidden}
+body,html{margin:0;padding:0;font-size:16px}#app{min-width:1500px}@media screen and (max-width:500px){#app{min-width:0;font-size:12px}}html{overflow-y:scroll}:root{overflow-y:auto;overflow-x:hidden}:root body{position:absolute}body{width:100vw;overflow:hidden}
 
 /*!
  * animate.css -https://daneden.github.io/animate.css/
