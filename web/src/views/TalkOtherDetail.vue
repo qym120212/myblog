@@ -84,9 +84,9 @@ export default {
       this.limit()
       const res = await this.$http.get(`talkothers/${this.id}`);
       this.model = res.data;
-      var d = new Date(this.model.date);
-      this.model.date =
-        d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      let str = this.model.date
+      str = str.slice(0,4) + '-' + str.slice(4,6) + '-' + str.slice(6)
+      this.model.date = str;
       this.commentsLength = this.model.comments.length;
       var likeList = JSON.parse(localStorage.getItem("likeList"));
       if (!likeList) return;
@@ -171,7 +171,7 @@ export default {
   padding: 10px 70px 0;
 }
 .articlecontainer {
-  width: 900px;
+  width: 70%;
   margin: auto;
   padding: 30px 40px 35px;
   box-shadow: 5px 5px 20px #e4e3e3;
