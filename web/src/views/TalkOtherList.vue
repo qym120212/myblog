@@ -60,7 +60,7 @@ export default {
     async fetch() {
       const res = await this.$http.get("talkothers");
       this.items = res.data
-      this.items = this.items.reverse().sort(this.compare('date'))
+      this.items = this.items.sort(this.compare('date'))
       this.items.forEach((item)=>{
         let str = item.date
         str = str.slice(0,4) + '-' + str.slice(4,6) + '-' + str.slice(6)
@@ -72,7 +72,7 @@ export default {
     return function(a,b){
         var value1 = a[property];
         var value2 = b[property];
-        return value1 - value2;
+        return value2 - value1;
       }
     },
     articledetail(id) {
