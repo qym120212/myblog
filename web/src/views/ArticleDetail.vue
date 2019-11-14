@@ -165,7 +165,7 @@ export default {
   padding: 10px 70px 0;
 }
 .articlecontainer {
-  width: 900px;
+  width: 90%;
   margin: auto;
   padding: 30px 40px 35px;
   box-shadow: 5px 5px 20px #e4e3e3;
@@ -227,6 +227,7 @@ export default {
 }
 .ql-editor{
   max-width: 70%;
+  margin: auto;
 }
 .ql-editor .ql-align-center{
   background-color: red;
