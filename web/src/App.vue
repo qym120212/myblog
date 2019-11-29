@@ -13,7 +13,7 @@ body {
   width:100% */
 }
 #app {
-  min-width: 1500px;
+  min-width: 1300px;
 }
 @media screen and (max-width: 500px) {
   #app {
