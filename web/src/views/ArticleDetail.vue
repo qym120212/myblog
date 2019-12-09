@@ -165,7 +165,7 @@ export default {
 </script>
 <style scoped>
 .main {
-  padding: 10px 70px 0;
+  width: 100vw;
 }
 .articlecontainer {
   width: 70%;

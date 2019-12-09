@@ -119,7 +119,7 @@ export default {
 }
 ul {
   margin-left: 1.875rem;
-  width: 56%;
+  width: 49%;
   display: inline-block;
   padding: 0;
 }

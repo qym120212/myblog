@@ -236,7 +236,7 @@ li:hover {
   }
   ul{
     margin-left: 10px;
-    width: 95%;
+    width: 49%;
     margin-top: 0rem;
   }
   .bloglist{
